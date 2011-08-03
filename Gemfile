@@ -7,7 +7,7 @@ gem 'mongrel', '>= 1.2.0.pre2'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3-ruby', :require => 'sqlite3'
+
 gem 'jquery-rails'
 gem 'redis', '2.2.1'
 gem 'resque', '1.17.1'
@@ -15,11 +15,16 @@ gem 'cancan', '1.6.5'
 gem 'devise', '1.4.2'
 
 group :development, :test do
+  gem 'sqlite3-ruby', :require => 'sqlite3'
   gem 'rspec', '2.6.0'
   gem 'rspec-rails', '2.6.1'
   gem 'cucumber-rails', '1.0.2'
   gem 'capybara', '1.0.0'
   gem 'database_cleaner', '0.6.7'
+end
+
+group :production do
+  gem 'pg'
 end
 
 # Use unicorn as the web server

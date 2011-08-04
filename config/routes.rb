@@ -1,4 +1,12 @@
 Dtwid::Application.routes.draw do
+  resources :map_episodes
+
+  resources :map_slots
+
+  resources :user_roles
+
+  resources :submissions
+
   get "frontend/index"
 
   devise_for :users

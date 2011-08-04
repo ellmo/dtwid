@@ -1,0 +1,46 @@
+<%= form_for(@submission) do |f| %>
+  <% if @submission.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@submission.errors.count, "error") %> prohibited this submission from being saved:</h2>
+
+      <ul>
+      <% @submission.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= simple_form_for @submission do |f| %>
+    <%= f.input :name, :required => true %>
+    <%= f.association :map_episode, :include_blank => false, :required => true %>
+    <%= f.association :map_slot, :include_blank => false, :required => true %>
+    <%= f.input :link, :required => true %>
+    <%= f.button :submit %>
+  <% end %>
+  
+<!--  
+  <div class="field">
+    <%#= f.label :name %><br />
+    <%#= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%#= f.label :map_episode_id %><br />
+    <%#= f.text_field :map_episode_id %>
+  </div>
+  <div class="field">
+    <%#= f.label :map_slot_id %><br />
+    <%#= f.text_field :map_slot_id %>
+  </div>
+  <div class="field">
+    <%#= f.label :user_id %><br />
+    <%#= current_user.email %>
+  </div>
+  <div class="field">
+    <%#= f.label :link %><br />
+    <%#= f.text_field :link %>
+  </div>
+  <div class="actions">
+    <%#= f.submit %>
+  </div>
+-->
+<% end %>

@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @submission.name %>
+</p>
+
+<p>
+  <b>Episode:</b>
+  <%= @submission.map_episode_id %>
+</p>
+
+<p>
+  <b>Slot:</b>
+  <%= @submission.map_slot_id %>
+</p>
+
+<p>
+  <b>Author:</b>
+  <%= @submission.user_id %>
+</p>
+
+<p>
+  <b>Link:</b>
+  <%= @submission.link %>
+</p>
+
+
+<%= link_to 'Edit', edit_submission_path(@submission) %> |
+<%= link_to 'Back', submissions_path %>

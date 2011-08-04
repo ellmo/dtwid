@@ -10,7 +10,35 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110803191909) do
+ActiveRecord::Schema.define(:version => 20110804113041) do
+
+  create_table "map_episodes", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "map_slots", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "submissions", :force => true do |t|
+    t.string   "name"
+    t.integer  "map_episode_id"
+    t.integer  "map_slot_id"
+    t.integer  "user_id"
+    t.string   "link"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_roles", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
@@ -25,6 +53,7 @@ ActiveRecord::Schema.define(:version => 20110803191909) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_role_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

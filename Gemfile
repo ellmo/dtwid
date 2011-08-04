@@ -9,10 +9,11 @@ gem 'mongrel', '>= 1.2.0.pre2'
 
 
 gem 'jquery-rails'
-gem 'redis', '2.2.1'
-gem 'resque', '1.17.1'
+#gem 'redis', '2.2.1'
+#gem 'resque', '1.17.1'
 gem 'cancan', '1.6.5'
 gem 'devise', '1.4.2'
+gem 'simple_form', '1.4.2'
 
 group :development, :test do
   gem 'sqlite3-ruby', :require => 'sqlite3'

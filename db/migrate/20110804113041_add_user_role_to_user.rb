@@ -1,6 +1,6 @@
 class AddUserRoleToUser < ActiveRecord::Migration
   def self.up
-    add_column :users, :user_role_id, :integer, :default => 1
+    add_column :users, :user_role_id, :integer, :null => false, :default => 1
   end
 
   def self.down

@@ -1,14 +1,14 @@
-<h1>DooM</h1>
+<%= image_tag "doom.jpg" %>
 <h2>the way id did</h2>
 <% if user_signed_in? %>
   signed in as <%= current_user.email %>
   <br />
-  <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-  <br />
-  <%= link_to "View submissions", submissions_path %>
+  <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>  
 <% else %>
   Not logged in.
   <br />
   <%= link_to "Sign in", new_user_session_path %>
   <%= link_to "Sign up", new_user_registration_path %>
 <% end %>
+<br />
+<%= link_to "View submissions", submissions_path %>

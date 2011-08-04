@@ -15,13 +15,17 @@
 <% @submissions.each do |submission| %>
   <tr>
     <td><%= submission.name %></td>
-    <td><%= submission.map_episode_id %></td>
-    <td><%= submission.map_slot_id %></td>
-    <td><%= submission.user_id %></td>
-    <td><%= submission.link %></td>
+    <td><%= submission.map_episode.name %></td>
+    <td><%= submission.map_slot.name %></td>
+    <td><%= submission.user.email %></td>
+    <td><%= link_to 'Download', submission.link %></td>
     <td><%= link_to 'Show', submission %></td>
-    <td><%= link_to 'Edit', edit_submission_path(submission) %></td>
-    <td><%= link_to 'Destroy', submission, :confirm => 'Are you sure?', :method => :delete %></td>
+    <% if can? :update, submission %>
+      <td><%= link_to 'Edit', edit_submission_path(submission) %></td>
+    <% end %>
+    <% if can? :destroy, submission %>
+      <td><%= link_to 'Destroy', submission, :confirm => 'Are you sure?', :method => :delete %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>

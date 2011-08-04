@@ -1,0 +1,17 @@
+input {
+  font-weight: bold;
+}
+
+label {
+  float: left;
+  text-align: right;
+  margin-right: 20px;
+  width: 100px;
+}
+
+.submit_button {
+  margin-left: 100px;
+}
+
+
+

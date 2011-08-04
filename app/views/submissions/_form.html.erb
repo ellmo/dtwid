@@ -14,33 +14,7 @@
     <%= f.input :name, :required => true %>
     <%= f.association :map_episode, :include_blank => false, :required => true %>
     <%= f.association :map_slot, :include_blank => false, :required => true %>
-    <%= f.input :link, :required => true %>
-    <%= f.button :submit %>
+    <%= f.input :link, :as => :url, :required => true %>
+    <%= f.button :submit, :class => "submit_button" %>
   <% end %>
-  
-<!--  
-  <div class="field">
-    <%#= f.label :name %><br />
-    <%#= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%#= f.label :map_episode_id %><br />
-    <%#= f.text_field :map_episode_id %>
-  </div>
-  <div class="field">
-    <%#= f.label :map_slot_id %><br />
-    <%#= f.text_field :map_slot_id %>
-  </div>
-  <div class="field">
-    <%#= f.label :user_id %><br />
-    <%#= current_user.email %>
-  </div>
-  <div class="field">
-    <%#= f.label :link %><br />
-    <%#= f.text_field :link %>
-  </div>
-  <div class="actions">
-    <%#= f.submit %>
-  </div>
--->
 <% end %>

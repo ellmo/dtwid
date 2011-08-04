@@ -1,5 +1,6 @@
 class SubmissionsController < ApplicationController
   before_filter :authenticate_user!, :except => [:show, :index]
+  load_and_authorize_resource
 
   # GET /submissions
   # GET /submissions.xml
@@ -43,6 +44,7 @@ class SubmissionsController < ApplicationController
   # POST /submissions.xml
   def create
     @submission = Submission.new(params[:submission])
+    @submission.user = current_user
 
     respond_to do |format|
       if @submission.save

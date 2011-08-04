@@ -9,4 +9,13 @@ class User < ActiveRecord::Base
   
   has_many :maps
   belongs_to :user_role
+  
+  def admin?
+    self.user_role.name == "admin"
+  end
+  
+  def superadmin?
+    self.user_role.name == "superadmin"
+  end
+  
 end

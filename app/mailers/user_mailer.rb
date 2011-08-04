@@ -6,8 +6,15 @@ class UserMailer < ActionMailer::Base
     devise_mail(record, :confirmation_instructions)
   end
 
-  def reset_password_instructions(record)
-    devise_mail(record, :reset_password_instructions)
+    # send password reset instructions
+  def reset_password_instructions(user)
+    @resource = user
+    mail(:to => @resource.email,
+      :subject => "Reset password instructions",
+      :tag => 'password-reset',
+      :content_type => "text/html") do |format|
+        format.html { render "devise/mailer/reset_password_instructions" }
+    end
   end
 
   def unlock_instructions(record)

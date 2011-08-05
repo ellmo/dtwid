@@ -1,15 +1,8 @@
 Dtwid::Application.routes.draw do
-  get "admin/dupas/indesh"
-
-  get "dupas/show"
-
-  get "dupas/create"
-
-  resources :map_authors
   
   namespace :admin do    
     resources :users, :except => [:create, :destroy]
-    resource :map_authors
+    resources :map_authors
   end
 
   resources :submissions

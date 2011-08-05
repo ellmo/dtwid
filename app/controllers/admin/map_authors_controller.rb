@@ -44,7 +44,7 @@ class Admin::MapAuthorsController < ApplicationController
 
     respond_to do |format|
       if @map_author.save
-        format.html { redirect_to(@map_author, :notice => 'Map author was successfully created.') }
+        format.html { redirect_to([:admin, @map_author], :notice => 'Map author was successfully created.') }
         format.xml  { render :xml => @map_author, :status => :created, :location => @map_author }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class Admin::MapAuthorsController < ApplicationController
 
     respond_to do |format|
       if @map_author.update_attributes(params[:map_author])
-        format.html { redirect_to(@map_author, :notice => 'Map author was successfully updated.') }
+        format.html { redirect_to([:admin, @map_author], :notice => 'Map author was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

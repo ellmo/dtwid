@@ -12,3 +12,7 @@
 <% end %>
 <br />
 <%= link_to "View submissions", submissions_path %>
+<% if user_signed_in? and current_user.superadmin? %>
+  <br />
+  <%= link_to "Users", admin_users_path %>
+<% end %>

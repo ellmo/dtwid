@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   belongs_to :user_role
   
   after_create :make_author
+  after_update :update_author
   
   def admin?
     self.user_role.name == "admin" or self.superadmin?
@@ -26,6 +27,12 @@ class User < ActiveRecord::Base
       @author = self.build_map_author
       @author.nick = self.nick
       @author.save
+    end
+  end
+  
+  def update_author
+    if self.map_author
+      self.map_author.update_attribute :nick, self.nick
     end
   end
   

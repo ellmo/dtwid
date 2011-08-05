@@ -27,4 +27,6 @@
 
 <br />
 
-<%= link_to 'New Map Author', new_admin_map_author_path %>
+<% if can? :create, MapAuthor %>
+  <%= link_to 'New Map Author', new_admin_map_author_path %>
+<% end %>

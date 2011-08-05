@@ -53,7 +53,8 @@ ActiveRecord::Schema.define(:version => 20110804113041) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_role_id",                          :default => 1
+    t.integer  "user_role_id",                          :default => 1,  :null => false
+    t.string   "nick"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

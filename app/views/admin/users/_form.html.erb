@@ -1,0 +1,6 @@
+
+  <%= simple_form_for [:admin, @user] do |f| %>
+    <%= f.input :nick, :required => true %>
+    <%= f.button :submit, :class => "submit_button" %>
+  <% end %>
+

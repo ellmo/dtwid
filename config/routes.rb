@@ -1,9 +1,13 @@
 Dtwid::Application.routes.draw do
-  resources :map_episodes
+  #resources :map_episodes
 
-  resources :map_slots
+  #resources :map_slots
 
-  resources :user_roles
+  #resources :user_roles
+
+  namespace :admin do
+    resources :users  
+  end
 
   resources :submissions
 

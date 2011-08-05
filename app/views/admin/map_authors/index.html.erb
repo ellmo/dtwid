@@ -13,7 +13,7 @@
     <td><%= map_author.nick %></td>
     <td><%= link_to 'Show', [:admin, map_author] %></td>
     <td><%= link_to 'Edit', edit_admin_map_author_path(map_author) %></td>
-    <td><%= link_to 'Destroy', admin_map_author, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Destroy', [:admin, map_author], :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>

@@ -76,7 +76,7 @@ class Admin::MapAuthorsController < ApplicationController
     @map_author.destroy
 
     respond_to do |format|
-      format.html { redirect_to(map_authors_url) }
+      format.html { redirect_to(admin_map_authors_url) }
       format.xml  { head :ok }
     end
   end

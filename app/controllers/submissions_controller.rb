@@ -44,7 +44,7 @@ class SubmissionsController < ApplicationController
   # POST /submissions.xml
   def create
     @submission = Submission.new(params[:submission])
-    @submission.user = current_user
+    @submission.map_author = current_user.map_author
 
     respond_to do |format|
       if @submission.save

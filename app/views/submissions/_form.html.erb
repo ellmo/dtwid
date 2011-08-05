@@ -12,6 +12,9 @@
   <% end %>
   <%= simple_form_for @submission do |f| %>
     <%= f.input :name, :required => true %>
+    <% if current_user.admin? %>
+      <%= f.association :map_author, :collection => MapAuthor.all(:order => 'nick'), :label_method => :nick, :include_blank => false, :required => true, :selected => current_user.map_author %>
+    <% end %>
     <%= f.association :map_episode, :include_blank => false, :required => true %>
     <%= f.association :map_slot, :include_blank => false, :required => true %>
     <%= f.input :link, :as => :url, :required => true %>

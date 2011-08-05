@@ -5,13 +5,16 @@ class Ability
     # Define abilities for the passed in user here. For example:
     #
     user ||= User.new # guest user (not logged in)
-    if user.admin?
-      can :manage, Submission
-    elsif user.superadmin?
+    if user.superadmin?
       can :manage, :all
+    elsif user.admin?
+      can :manage, Submission
     else
       can :read, :all
       can :create, Submission
+      can :update, Submission do |sub|
+        sub.map_author.user == user
+      end
     end
     #
     # The first argument to `can` is the action you are giving the user permission to do.

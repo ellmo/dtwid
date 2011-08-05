@@ -17,7 +17,7 @@
     <td><%= submission.name %></td>
     <td><%= submission.map_episode.name %></td>
     <td><%= submission.map_slot.name %></td>
-    <td><%= submission.user.email %></td>
+    <td><%= submission.map_author.nick %></td>
     <td><%= link_to 'Download', submission.link %></td>
     <td><%= link_to 'Show', submission %></td>
     <% if can? :update, submission %>

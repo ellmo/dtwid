@@ -10,7 +10,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110804113041) do
+ActiveRecord::Schema.define(:version => 20110805010223) do
+
+  create_table "map_authors", :force => true do |t|
+    t.string   "nick"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "map_episodes", :force => true do |t|
     t.string   "name"
@@ -28,7 +35,7 @@ ActiveRecord::Schema.define(:version => 20110804113041) do
     t.string   "name"
     t.integer  "map_episode_id"
     t.integer  "map_slot_id"
-    t.integer  "user_id"
+    t.integer  "map_author_id"
     t.string   "link"
     t.datetime "created_at"
     t.datetime "updated_at"

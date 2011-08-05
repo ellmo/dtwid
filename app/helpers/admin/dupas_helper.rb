@@ -1,0 +1,2 @@
+module Admin::DupasHelper
+end

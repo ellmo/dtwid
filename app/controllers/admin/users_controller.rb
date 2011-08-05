@@ -42,20 +42,19 @@ class Admin::UsersController < ApplicationController
 
   # POST /users
   # POST /users.xml
-  def create
-    @user = User.new(params[:user])
-    @user.user_role = UserRole.find_by_name "unregistered"
+#  def create
+#    @user = User.new(params[:user])
 
-    respond_to do |format|
-      if @user.save(false)
-        format.html { redirect_to([:admin, @user], :notice => 'User was successfully created.') }
-        format.xml  { render :xml => @user, :status => :created, :location => @user }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
+#    respond_to do |format|
+#      if @user.save(false)
+#        format.html { redirect_to([:admin, @user], :notice => 'User was successfully created.') }
+#        format.xml  { render :xml => @user, :status => :created, :location => @user }
+#      else
+#        format.html { render :action => "new" }
+#        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+#      end
+#    end
+#  end
 
   # PUT /users/1
   # PUT /users/1.xml
@@ -75,13 +74,13 @@ class Admin::UsersController < ApplicationController
 
   # DELETE /users/1
   # DELETE /users/1.xml
-  def destroy
-    @user = User.find(params[:id])
-    @user.destroy
+#  def destroy
+#    @user = User.find(params[:id])
+#    @user.destroy
 
-    respond_to do |format|
-      format.html { redirect_to(submissions_url) }
-      format.xml  { head :ok }
-    end
-  end
+#    respond_to do |format|
+#      format.html { redirect_to(submissions_url) }
+#      format.xml  { head :ok }
+#    end
+#  end
 end

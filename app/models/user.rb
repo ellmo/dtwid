@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
   has_one :map_author
   belongs_to :user_role
   
+  validates_uniqueness_of :nick
+  
   after_create :make_author
   after_update :update_author
   

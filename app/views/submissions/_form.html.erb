@@ -13,7 +13,7 @@
   <%= simple_form_for @submission do |f| %>
     <%= f.input :name, :placeholder => "Name of your map", :input_html => { :style => "width:295px"} %>
     <% if current_user.admin? %>
-      <%= f.association :map_author, :collection => MapAuthor.all(:order => 'nick'), :label_method => :nick, :include_blank => false, :required => true, :input_html => {:selected => current_user.map_author} %>
+      <%= f.association :map_author, :collection => MapAuthor.all(:order => 'nick'), :label_method => :info, :include_blank => false, :required => true, :input_html => {:selected => current_user.map_author} %>
     <% end %>
     <fieldset>
       <legend>Which mapslot is the map currently played on?</legend>

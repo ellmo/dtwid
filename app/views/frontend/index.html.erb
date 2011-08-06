@@ -1,18 +1,21 @@
 <%= image_tag "doom.jpg" %>
-<h2>the way id did</h2>
-<% if user_signed_in? %>
-  signed in as <%= current_user.email %>
-  <br />
-  <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>  
-<% else %>
-  Not logged in.
-  <br />
-  <%= link_to "Sign in", new_user_session_path %>
-  <%= link_to "Sign up", new_user_registration_path %>
-<% end %>
 <br />
-<%= link_to "View submissions", submissions_path %>
-<% if user_signed_in? and current_user.superadmin? %>
+<!--<h2>the way id did</h2>-->
+<div style="margin-top:40px">
+  <% if user_signed_in? %>
+    signed in as <%= current_user.email %>
+    <br />
+    <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>  
+  <% else %>
+    Not logged in.
+    <br />
+    <%= link_to "Sign in", new_user_session_path %>
+    <%= link_to "Sign up", new_user_registration_path %>
+  <% end %>
   <br />
-  <%= link_to "Users", admin_users_path %>
-<% end %>
+  <%= link_to "View submissions", submissions_path %>
+  <% if user_signed_in? and current_user.superadmin? %>
+    <br />
+    <%= link_to "Users", admin_users_path %>
+  <% end %>
+</div>

@@ -15,7 +15,8 @@
   </tr>
 
 <% @submissions.each_with_index do |submission, index| %>
-  <tr class="<%= (index%2 == 1) ? 'odd_row' : 'even_row' %>" >
+  <%= content_tag :tr,
+      :class => (((index%2 == 1) ? 'odd_row ' : 'even_row ') + submission.get_css_row_style ) do %>
     <td><%= index+1 %></td>
     <td><%= submission.name %></td>
     <td><%= "E#{submission.map_episode.id} #{submission.map_slot.name}" %></td>
@@ -30,7 +31,7 @@
     <% if can? :destroy, submission %>
       <td><%= link_to 'Destroy', submission, :confirm => 'Are you sure?', :method => :delete %></td>
     <% end %>
-  </tr>
+  <% end %>
 <% end %>
 </table>
 

@@ -11,12 +11,20 @@
     </div>
   <% end %>
   <%= simple_form_for @submission do |f| %>
-    <%= f.input :name, :required => true %>
+    <%= f.input :name, :required => true, :input_html => {:value => "Unnamed Map", :style => "width:295px"} %>
     <% if current_user.admin? %>
       <%= f.association :map_author, :collection => MapAuthor.all(:order => 'nick'), :label_method => :nick, :include_blank => false, :required => true, :selected => current_user.map_author %>
     <% end %>
-    <%= f.association :map_episode, :include_blank => false, :required => true %>
-    <%= f.association :map_slot, :include_blank => false, :required => true %>
+    <fieldset>
+      <legend>Which mapslot is the map currently played on?</legend>
+      <%= f.association :map_episode, :include_blank => false %>
+      <%= f.association :map_slot, :collection => MapSlot.find_all_by_playable(true), :include_blank => false %>
+    </fieldset>
+    <fieldset>
+      <legend>Which maplsot do you wish this map would occupy in the project?</legend>
+      <%= f.association :intended_map_episode, :include_blank => false %>
+      <%= f.association :intended_map_slot, :include_blank => false %>
+    </fieldset>
     <%= f.input :link, :as => :url, :required => true %>
     <%= f.button :submit, :class => "submit_button" %>
   <% end %>

@@ -2,16 +2,34 @@ input {
   font-weight: bold;
 }
 
+select {
+  width: 300px;
+}
+
 label {
   float: left;
   text-align: right;
   margin-right: 20px;
-  width: 100px;
+  width: 180px;
+  font-weight: bold;
 }
 
 .submit_button {
   margin-left: 100px;
+  margin-top: 20px;
+  margin-bottom: 40px;
 }
 
+fieldset {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-top: 15px;
+  width:50%;
+  border: 1px #303030 dashed;
+}
+
+legend {
+  color: rgb(180,180,130)
+}
 
 

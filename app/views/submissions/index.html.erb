@@ -1,6 +1,10 @@
 <h1>Listing submissions</h1>
 
-<table>
+<%= link_to 'Back to main', root_path %>
+<br />
+<%= link_to 'New Submission', new_submission_path %>
+
+<table style="margin-top:20px; margin-bottom:30px; margin-left:80px">
   <tr>
     <th></th>
     <th><%= sort_link 'Name', :name %></th>
@@ -34,7 +38,5 @@
   <% end %>
 <% end %>
 </table>
-
-<br />
 
 <%= link_to 'New Submission', new_submission_path %>

@@ -10,7 +10,7 @@ class Submission < ActiveRecord::Base
       when 1 then "kditd_row"
       when 2 then "tsoh_row"
       when 3 then "inferno_row"
-      else ""
+      else "tfc_row"
     end
   end
 end

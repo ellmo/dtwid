@@ -2,10 +2,12 @@
 
 <table>
   <tr>
+    <th></th>
     <th><%= sort_link 'Name', :name %></th>
     <th><%= sort_link 'Playing MapSlot', :map_episode_id, :map_slot_id %></th>
     <th><%= sort_link 'Intended MapSlot', :intended_map_episode_id, :intended_map_slot_id %></th>
-    <th><%= sort_link 'Author', "map_authors.nick" %></th>
+    <th><%= sort_link 'Author', "map_authors.nick", "submissions.created_at" %></th>
+    <th><%= sort_link 'Last Update', "submissions.updated_at" %></th>
     <th>Link</th>
     <th></th>
     <th></th>
@@ -14,10 +16,12 @@
 
 <% @submissions.each_with_index do |submission, index| %>
   <tr class="<%= (index%2 == 1) ? 'odd_row' : 'even_row' %>" >
+    <td><%= index+1 %></td>
     <td><%= submission.name %></td>
     <td><%= "E#{submission.map_episode.id} #{submission.map_slot.name}" %></td>
     <td><%= "E#{submission.intended_map_episode.id} #{submission.intended_map_slot.name}" %></td>
     <td><%= submission.map_author.nick %></td>
+    <td><%= submission.updated_at.strftime("%d-%b-%Y (%H:%M)") %></td>
     <td><%= link_to 'Download', submission.link %></td>
     <td><%= link_to 'Show', submission %></td>
     <% if can? :update, submission %>

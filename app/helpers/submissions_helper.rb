@@ -1,8 +1,11 @@
 module SubmissionsHelper
-  def sort_link(title, column, options = {})
-    condition = options[:unless] if options.has_key?(:unless)
+  def sort_link(title, column, column2=nil)
     sort_dir = params[:d] == 'ASC' ? 'DESC' : 'ASC'
-    link_to_unless condition, title, request.parameters.merge( {:c => column, :d => sort_dir} )
+    unless column2
+      link_to title, request.parameters.merge( {:c => column, :d => sort_dir} )
+    else
+      link_to title, request.parameters.merge( {:c1 => column, :c2 => column2, :d => sort_dir} )
+    end
   end
   
 

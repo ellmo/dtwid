@@ -1,4 +1,4 @@
-<h1>Listing Unregistered Map Authors</h1>
+<h1>Listing ALL Map Authors</h1>
 
 <table>
   <tr>
@@ -10,7 +10,7 @@
 
 <% @map_authors.each do |map_author| %>
   <tr>
-    <td><%= map_author.nick %></td>
+    <td><%= map_author.info %></td>
     <td><%= link_to 'Show', [:admin, map_author] %></td>
     <td><%= link_to 'Edit', edit_admin_map_author_path(map_author) %></td>
     <td><%= link_to 'Destroy', [:admin, map_author], :confirm => 'Are you sure?', :method => :delete %></td>

@@ -1,4 +1,12 @@
 td {
-  border: 1px solid #B4B478;
-  padding: 2px;
+/*  border: 1px solid #B4B478;*/
+  padding: 4px;
+}
+
+.odd_row {
+  background-color: #202020;
+}
+
+.even_row {
+  background-color: #404040;
 }

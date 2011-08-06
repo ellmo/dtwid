@@ -12,8 +12,8 @@
     <th></th>
   </tr>
 
-<% @submissions.each do |submission| %>
-  <tr>
+<% @submissions.each_with_index do |submission, index| %>
+  <tr class="<%= (index%2 == 1) ? 'odd_row' : 'even_row' %>" >
     <td><%= submission.name %></td>
     <td><%= "E#{submission.map_episode.id} #{submission.map_slot.name}" %></td>
     <td><%= "E#{submission.intended_map_episode.id} #{submission.intended_map_slot.name}" %></td>

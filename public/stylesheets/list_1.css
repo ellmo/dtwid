@@ -12,7 +12,7 @@ td {
 }
 
 .kditd_row {
-  color: #B4B464;
+  color: #C8C8C8;
 }
 
 .tsoh_row {
@@ -21,4 +21,8 @@ td {
 
 .inferno_row {
   color: #F05A3C;
+}
+
+.tfc_row {
+  color: #78C878;
 }

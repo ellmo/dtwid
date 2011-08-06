@@ -2,10 +2,10 @@
 
 <table>
   <tr>
-    <th>Name</th>
-    <th>Episode</th>
-    <th>Slot</th>
-    <th>Author</th>
+    <th><%= sort_link 'Name', :name %></th>
+    <th><%= sort_link 'Episode', :map_episode_id %></th>
+    <th><%= sort_link 'Slot', :map_slot_id %></th>
+    <th><%= sort_link 'Author', "map_authors.nick" %></th>
     <th>Link</th>
     <th></th>
     <th></th>

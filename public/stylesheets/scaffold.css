@@ -1,4 +1,4 @@
-body { background-color: #000; color: #B4B478; }
+body { background-color: #000; color: gainsboro; }
 
 body, p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
@@ -12,9 +12,9 @@ pre {
   font-size: 11px;
 }
 
-a { color: #fff; }
-a:visited { color: #87875A; }
-a:hover { color: #E6E6B4 }
+a { color: orange; }
+a:visited { color: orange; }
+a:hover { color: #fff }
 
 div.field, div.actions {
   margin-bottom: 10px;

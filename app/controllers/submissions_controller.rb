@@ -5,7 +5,12 @@ class SubmissionsController < ApplicationController
   # GET /submissions
   # GET /submissions.xml
   def index
-    @submissions = Submission.all
+    #@submissions = Submission.all
+    if params[:c] and params[:d]
+      @submissions = Submission.find :all, :include => :map_author, :order => "#{params[:c]} #{params[:d]}"
+    else
+      @submissions = Submission.find :all, :order => "created_at"
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -85,5 +90,9 @@ class SubmissionsController < ApplicationController
       format.html { redirect_to(submissions_url) }
       format.xml  { head :ok }
     end
+  end
+  
+  def list
+    @submissions = Submission.find(:all, :order => sort_order('created_at'))
   end
 end

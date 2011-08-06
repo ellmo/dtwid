@@ -3,8 +3,8 @@
 <table>
   <tr>
     <th><%= sort_link 'Name', :name %></th>
-    <th><%= sort_link 'Map', :map_episode_id, :map_slot_id %></th>
-    <th><%= sort_link 'Slot', :map_slot_id %></th>
+    <th><%= sort_link 'Playing MapSlot', :map_episode_id, :map_slot_id %></th>
+    <th><%= sort_link 'Intended MapSlot', :intended_map_episode_id, :intended_map_slot_id %></th>
     <th><%= sort_link 'Author', "map_authors.nick" %></th>
     <th>Link</th>
     <th></th>
@@ -15,8 +15,8 @@
 <% @submissions.each do |submission| %>
   <tr>
     <td><%= submission.name %></td>
-    <td><%= submission.map_episode.name %></td>
-    <td><%= submission.map_slot.name %></td>
+    <td><%= "E#{submission.map_episode.id} #{submission.map_slot.name}" %></td>
+    <td><%= "E#{submission.intended_map_episode.id} #{submission.intended_map_slot.name}" %></td>
     <td><%= submission.map_author.nick %></td>
     <td><%= link_to 'Download', submission.link %></td>
     <td><%= link_to 'Show', submission %></td>

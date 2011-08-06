@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110805010223) do
+ActiveRecord::Schema.define(:version => 20110806203016) do
 
   create_table "map_authors", :force => true do |t|
     t.string   "nick"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(:version => 20110805010223) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "playable",   :default => true, :null => false
   end
 
   create_table "submissions", :force => true do |t|
@@ -39,6 +40,8 @@ ActiveRecord::Schema.define(:version => 20110805010223) do
     t.string   "link"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "intended_map_episode_id"
+    t.integer  "intended_map_slot_id"
   end
 
   create_table "user_roles", :force => true do |t|

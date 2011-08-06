@@ -6,10 +6,12 @@ class SubmissionsController < ApplicationController
   # GET /submissions.xml
   def index
     #@submissions = Submission.all
-    if params[:c] and params[:d]
-      @submissions = Submission.find :all, :include => :map_author, :order => "#{params[:c]} #{params[:d]}"
-    elsif params[:c1] and params[:c2] and params[:d]
-      @submissions = Submission.find :all, :include => :map_author, :order => "#{params[:c1]} #{params[:d]}, #{params[:c2]} #{params[:d]}"
+    if params[:c1] and params[:d]
+      if params[:c2].nil? or params[:c2].blank?
+        @submissions = Submission.find :all, :include => :map_author, :order => "#{params[:c1]} #{params[:d]}"
+      else
+        @submissions = Submission.find :all, :include => :map_author, :order => "#{params[:c1]} #{params[:d]}, #{params[:c2]} #{params[:d]}"
+      end      
     else
       @submissions = Submission.find :all, :order => "created_at"
     end

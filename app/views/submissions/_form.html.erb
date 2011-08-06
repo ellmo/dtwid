@@ -18,12 +18,12 @@
     <fieldset>
       <legend>Which mapslot is the map currently played on?</legend>
       <%= f.association :map_episode, :include_blank => false %>
-      <%= f.association :map_slot, :collection => MapSlot.find_all_by_playable(true), :include_blank => false %>
+      <%= f.association :map_slot, :collection => MapSlot.find_all_by_playable(true, :order => :id), :order => :id, :include_blank => false %>
     </fieldset>
     <fieldset>
       <legend>Which maplsot do you wish this map would occupy in the project?</legend>
       <%= f.association :intended_map_episode, :include_blank => false %>
-      <%= f.association :intended_map_slot, :include_blank => false %>
+      <%= f.association :intended_map_slot, :collection => MapSlot.all(:order => :id), :include_blank => false %>
     </fieldset>
     <%= f.input :link, :as => :url, :required => true, :placeholder => "http://your_awesome_map.wad" %>
     <%= f.button :submit, :class => "submit_button" %>

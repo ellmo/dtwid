@@ -1,48 +1,12 @@
-  <div style="width:960px">
-  <div id="header">
-    <% if user_signed_in? %>
-      [ signed in as
-      <%= content_tag :span, :style => "color: #78C878;" do %>
-        <%= current_user.nick %>
-      <% end %>
-      | <%= link_to "Sign out", destroy_user_session_path, :method => :delete %> ]
-    <% else %>
-      [ Not logged in. | 
-      <%= link_to "Sign in", new_user_session_path %> |
-      <%= link_to "Sign up", new_user_registration_path %> ]
-    <% end %>
-  </div>
-
-  <div id="main">
-    <div id="left-menu">
-      <%= image_tag "doom_small_monaco.png" %>
-      <br/>
-      <ul>
-        <li><%= link_to "View submissions", submissions_path %></li>
-        <% if user_signed_in? and current_user.superadmin? %>
-          <li><%= link_to "Users", admin_users_path %></li>
-        <% end %>
-      </ul>
-    </div>
-    <div id="content-border">
-      <div id="content">
-        <div style="font-size:20px; font-weight:bold; margin-bottom:20px;">NEWS:</div>
-        <% @news.each do |news| %>
-          <div class="news_div">
-            <span class="news_title"><%= news.title %></span>
-            <br />
-            <span class="news_author"><%= news.user.nick %> <%= news.created_at.strftime("%d-%b-%Y (%H:%M)") %></span>
-            <br/>
-            <div class="news_content">
-              <%= raw news.content %>
-            </div>
-          </div>
-        <% end %>
-      </div>
+<div style="font-size:20px; font-weight:bold; margin-bottom:20px;">NEWS:</div>
+<% @news.each do |news| %>
+  <div class="news_div">
+    <span class="news_title"><%= news.title %></span>
+    <br />
+    <span class="news_author"><%= news.user.nick %> <%= news.created_at.strftime("%d-%b-%Y (%H:%M)") %></span>
+    <br/>
+    <div class="news_content">
+      <%= raw news.content %>
     </div>
   </div>
-  
-
-
-  
-<div>
+<% end %>

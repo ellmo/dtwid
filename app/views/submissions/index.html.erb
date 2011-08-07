@@ -22,11 +22,19 @@
       :class => (((index%2 == 1) ? 'odd_row ' : 'even_row ') + submission.get_css_row_style ) do %>
     <td><%= index+1 %></td>
     <td><%= submission.name %></td>
-    <td><%= "E#{submission.map_episode.id} #{submission.map_slot.name}" %></td>
-    <td><%= "E#{submission.intended_map_episode.id} #{submission.intended_map_slot.name}" %></td>
+    <td><%= "E#{submission.map_episode.id}#{submission.map_slot.name}" %></td>
+    <td><%= "E#{submission.intended_map_episode.id}#{submission.intended_map_slot.name}" %></td>
     <td><%= submission.map_author.nick %></td>
-    <td><%= submission.link_updated_at.strftime("%d-%b-%Y (%H:%M)") %></td>
-    <td><%= submission.updated_at.strftime("%d-%b-%Y (%H:%M)") %></td>
+    <td>
+      <div style="margin:0px; width:90px; text-align:center;">
+        <%= submission.link_updated_at.strftime("%d-%b-%Y\n(%H:%M)") %>
+      </div>
+    </td>
+    <td>
+      <div style="margin:0px; width:90px; text-align:center;">
+        <%= submission.updated_at.strftime("%d-%b-%Y\n(%H:%M)") %>
+      </div>
+    </td>      
     <td><%= link_to (image_tag 'download-icon.png'), submission.link, :title => "Download file from submitted link" %></td>
     <td><%= link_to (image_tag 'show-icon.png'), submission, :title => "Show submission details" %></td>
     <% if can? :update, submission %>

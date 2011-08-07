@@ -11,6 +11,8 @@ Dtwid::Application.routes.draw do
   resources :submissions
 
   get "frontend/index"
+  match "about" => "frontend#about"
+  match "contact" => "frontend#contact"
 
   devise_for :users
 

@@ -30,7 +30,7 @@
         <li><%= link_to "View submissions", submissions_path %></li>
         <% if user_signed_in? and current_user.superadmin? %>
           <li><%= link_to "Users", admin_users_path %></li>
-          <li><%= link_to "Back to main", root_path %></li>
+          <li><%= link_to "News", root_path %></li>
         <% end %>
       </ul>
     </div>

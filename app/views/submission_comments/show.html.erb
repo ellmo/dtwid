@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Submission:</b>
+  <%= @submission_comment.submission_id %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @submission_comment.user_id %>
+</p>
+
+<p>
+  <b>Comment:</b>
+  <%= @submission_comment.comment %>
+</p>
+
+
+<%= link_to 'Edit', edit_submission_comment_path(@submission_comment) %> |
+<%= link_to 'Back', submission_comments_path %>

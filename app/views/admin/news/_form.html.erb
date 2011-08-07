@@ -1,0 +1,15 @@
+<%= include_tiny_mce_if_needed %>
+
+<%= simple_form_for([:admin, @news]) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="inputs">
+    <%= f.input :title, :required => true %>
+    <%= f.input :content, :as => :text, :required => true, :input_html => {:class => "mceEditor"} %>
+    <%#= f.association :user, :label_method => :nick, :include_blank => false %>
+  </div>
+
+  <div class="actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

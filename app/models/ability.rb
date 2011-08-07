@@ -12,7 +12,7 @@ class Ability
     else
       can :read, :all
       can :create, Submission
-      can :update, Submission do |sub|
+      can [:update, :destroy], Submission do |sub|
         sub.map_author.user == user
       end
     end

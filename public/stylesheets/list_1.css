@@ -1,14 +1,13 @@
 td {
-/*  border: 1px solid #B4B478;*/
   padding: 4px;
 }
 
 .odd_row {
-  background-color: #202020;
+  background-color: #282828;
 }
 
 .even_row {
-  background-color: #404040;
+  background-color: #101010;
 }
 
 .kditd_row {

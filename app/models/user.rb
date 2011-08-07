@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   attr_accessible :nick, :email, :password, :password_confirmation, :remember_me
   
   has_many :submissions
+  has_many :news
   has_one :map_author
   belongs_to :user_role
   

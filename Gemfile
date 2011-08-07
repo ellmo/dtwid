@@ -14,6 +14,7 @@ gem 'jquery-rails'
 gem 'cancan', '1.6.5'
 gem 'devise', '1.4.2'
 gem 'simple_form', '1.4.2'
+gem 'tiny_mce', '0.1.4'
 
 group :development, :test do
   gem 'sqlite3-ruby', :require => 'sqlite3'

@@ -1,9 +1,14 @@
-body { background-color: #000; color: gainsboro; }
+body {
+  background-color: #000;
+  color: gainsboro;
+  padding:0px;
+}
 
 body, p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size:   13px;
   line-height: 18px;
+
 }
 
 pre {
@@ -12,8 +17,8 @@ pre {
   font-size: 11px;
 }
 
-a { color: orange; }
-a:visited { color: orange; }
+a { color: #bc8364; }
+a:visited { color: #bc8364; }
 a:hover { color: #fff }
 
 div.field, div.actions {

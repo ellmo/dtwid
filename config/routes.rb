@@ -1,8 +1,11 @@
 Dtwid::Application.routes.draw do
-  
+
+  resources :submission_comments
+
   namespace :admin do    
     resources :users, :except => [:create, :destroy]
     resources :map_authors
+    resources :news
   end
 
   resources :submissions

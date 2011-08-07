@@ -45,7 +45,7 @@
   border-left: 10px black solid;
   border-top-left-radius: 10px;
   margin: -10px;
-  height: 100%;
+  min-height: 800px;
 }
 
 .news_div {

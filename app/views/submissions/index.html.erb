@@ -4,14 +4,15 @@
 <br />
 <%= link_to 'New Submission', new_submission_path %>
 
-<table style="margin-top:20px; margin-bottom:30px; margin-left:80px">
+<table style="margin-top:20px; margin-bottom:30px;">
   <tr>
     <th></th>
     <th><%= sort_link 'Name', :name %></th>
     <th><%= sort_link 'Playing MapSlot', :map_episode_id, :map_slot_id %></th>
     <th><%= sort_link 'Intended MapSlot', :intended_map_episode_id, :intended_map_slot_id %></th>
     <th><%= sort_link 'Author', "map_authors.nick", "submissions.created_at" %></th>
-    <th><%= sort_link 'Last Update', "submissions.updated_at" %></th>
+    <th><%= sort_link 'Last Link Update', "submissions.link_updated_at" %></th>
+    <th><%= sort_link 'Last Update', "submissions.updated_at" %></th>    
     <th>Link</th>
     <th></th>
     <th></th>
@@ -26,14 +27,20 @@
     <td><%= "E#{submission.map_episode.id} #{submission.map_slot.name}" %></td>
     <td><%= "E#{submission.intended_map_episode.id} #{submission.intended_map_slot.name}" %></td>
     <td><%= submission.map_author.nick %></td>
+    <td><%= submission.link_updated_at.strftime("%d-%b-%Y (%H:%M)") %></td>
     <td><%= submission.updated_at.strftime("%d-%b-%Y (%H:%M)") %></td>
-    <td><%= link_to 'Download', submission.link %></td>
-    <td><%= link_to 'Show', submission %></td>
+    <td><%= link_to (image_tag 'download-icon.png'), submission.link, :title => "Download file from submitted link" %></td>
+    <td><%= link_to (image_tag 'show-icon.png'), submission, :title => "Show submission details" %></td>
     <% if can? :update, submission %>
-      <td><%= link_to 'Edit', edit_submission_path(submission) %></td>
+      <td>
+        <%= link_to (image_tag 'edit-icon.png'), edit_submission_path(submission), :title => "Edit submission" %>
+      </td>
     <% end %>
     <% if can? :destroy, submission %>
-      <td><%= link_to 'Destroy', submission, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td>
+        <%= link_to((image_tag 'delete-icon.png'), submission,
+          :title => "Delete submission", :confirm => 'Are you sure?', :method => :delete) %>
+      </td>
     <% end %>
   <% end %>
 <% end %>

@@ -13,7 +13,7 @@ class SubmissionsController < ApplicationController
         @submissions = Submission.find :all, :include => :map_author, :order => "#{params[:c1]} #{params[:d]}, #{params[:c2]} #{params[:d]}"
       end      
     else
-      @submissions = Submission.find :all, :order => "created_at"
+      @submissions = Submission.find :all, :order => "link_updated_at DESC"
     end
 
     respond_to do |format|

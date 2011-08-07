@@ -53,6 +53,7 @@ class SubmissionsController < ApplicationController
   # POST /submissions.xml
   def create
     @submission = Submission.new(params[:submission])
+    @submission.link_updated_at = Time.now
     unless params[:submission][:map_author_id]
       @submission.map_author = current_user.map_author
     end

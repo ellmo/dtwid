@@ -1,3 +1,7 @@
+#container_div {
+  width:960px;
+}
+
 #header {
   position: relative;
   width: 100%;
@@ -6,15 +10,16 @@
   border-top: 10px #282828 solid;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+  border-bottom: 5px #282828 solid;
+  border-bottom-right-radius: 10px;
 }
 
 #main {
-  position: absolute;
+  position: relative;
   height: 100%;
   bottom: 0px;
   margin: 0px;
-  width: 100%;
-  top: 36px;
+  width: 640px;
 }
 
 #left-menu {
@@ -29,7 +34,7 @@
 }
 
 #content-border {
-  position: absolute;
+  position: relative;
   left: 330px;
   border-top: 10px black solid;
   height: 100%;
@@ -48,7 +53,8 @@
   border: 10px #282828 solid;
   border-radius: 10px;
   margin-right:40px;
-  width:800px
+  width: 610px;
+  margin-bottom:25px;
 }
 
 .news_title {

@@ -5,8 +5,7 @@
 
   <div class="inputs">
     <%= f.input :title, :required => true %>
-    <%= f.input :content, :as => :text, :required => true, :input_html => {:class => "mceEditor"} %>
-    <%#= f.association :user, :label_method => :nick, :include_blank => false %>
+    <%= f.input :content, :as => :text, :input_html => {:class => "mceEditor"} %>
   </div>
 
   <div class="actions">

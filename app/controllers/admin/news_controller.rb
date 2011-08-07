@@ -26,7 +26,6 @@ class Admin::NewsController < ApplicationController
   # GET /admin/news/new
   # GET /admin/news/new.xml
   def new
-    
     @news = News.new
 
     respond_to do |format|

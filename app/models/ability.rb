@@ -9,11 +9,17 @@ class Ability
       can :manage, :all
     elsif user.admin?
       can :manage, Submission
+      can :manage, SubmissionImageLink
+      can :manage, News
     else
       can :read, :all
       can :create, Submission
       can [:update, :destroy], Submission do |sub|
         sub.map_author.user == user
+      end      
+      can :create, SubmissionImageLink
+      can [:update, :destroy], SubmissionImageLink do |sublink|
+        sublink.submission.map_author.user == user
       end
     end
     #

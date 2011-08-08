@@ -5,6 +5,10 @@ class Submission < ActiveRecord::Base
   belongs_to :intended_map_episode, :class_name => "MapEpisode"
   belongs_to :intended_map_slot, :class_name => "MapSlot"
   
+  has_many :images, :class_name => "SubmissionImageLink", :dependent => :destroy
+  
+  accepts_nested_attributes_for :images, :reject_if => :reject_image_links, :allow_destroy => true
+  
   before_save :check_if_link_changed
   
   def check_if_link_changed
@@ -20,5 +24,9 @@ class Submission < ActiveRecord::Base
       when 3 then "inferno_row"
       else "tfc_row"
     end
+  end
+  
+  def reject_image_links(attributed)
+    attributed['link'].blank?
   end
 end

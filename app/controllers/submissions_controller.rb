@@ -37,7 +37,8 @@ class SubmissionsController < ApplicationController
   # GET /submissions/new.xml
   def new
     @submission = Submission.new
-
+    3.times { @submission.images.build }
+    
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @submission }

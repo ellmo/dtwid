@@ -10,7 +10,7 @@ label {
   float: left;
   text-align: right;
   margin-right: 20px;
-  width: 180px;
+  width: 100px;
   font-weight: bold;
 }
 
@@ -30,6 +30,10 @@ fieldset {
 
 legend {
   color: rgb(180,180,130)
+}
+
+fieldset {
+  margin-left: 118px;
 }
 
 #news_title {

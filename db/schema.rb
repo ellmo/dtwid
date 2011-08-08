@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110807122926) do
+ActiveRecord::Schema.define(:version => 20110808100602) do
 
   create_table "map_authors", :force => true do |t|
     t.string   "nick"
@@ -44,6 +44,13 @@ ActiveRecord::Schema.define(:version => 20110807122926) do
     t.integer  "submission_id"
     t.integer  "user_id"
     t.string   "comment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "submission_image_links", :force => true do |t|
+    t.integer  "submission_id"
+    t.string   "link"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

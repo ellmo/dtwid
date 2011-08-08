@@ -1,11 +1,11 @@
 <H1>NEWS:</H1>
 <% @news.each do |news| %>
-  <div class="news_div">
-    <span class="news_title"><%= news.title %></span>
+  <div class="frontend_narrow_div">
+    <span class="frontend_title"><%= news.title %></span>
     <br />
-    <span class="news_author"><%= news.user.nick %> <%= news.created_at.strftime("%d-%b-%Y (%H:%M)") %></span>
+    <span class="frontend_author"><%= news.user.nick %> <%= news.created_at.strftime("%d-%b-%Y (%H:%M)") %></span>
     <br/>
-    <div class="news_content">
+    <div class="frontend_content">
       <%= raw news.content %>
     </div>
   </div>

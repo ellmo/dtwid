@@ -1,30 +1,59 @@
-<p id="notice"><%= notice %></p>
+<H1>SUBMISSION DETAILS:</H1>
+<div class="frontend_wide_div">
+  <span class="frontend_title">
+    <%= "E#{@submission.intended_map_episode.id}#{@submission.intended_map_slot.name} - #{@submission.name}" %>
+  </span>
+  <br />
+  <span class="frontend_author"><%= @submission.map_author.nick %></span>
+  <br/>
+  <div class="frontend_content">
+    <%= link_to('Edit', edit_submission_path(@submission)) if (current_user == @submission.map_author.user or current_user.admin?) %>
+    <br />
+    <b>Download Link:</b> <%= link_to @submission.link, @submission.link %>
+    <br />
+    <b>Playable on:</b> <%= "E#{@submission.map_episode.id}#{@submission.map_slot.name} " %>
+    <br/>
+    
+    <fieldset style="width:360px; margin-left:120px">
+      <legend>Date information</legend>
+      <table style="width:100%">
+        <tr>
+          <td><b>First created at:</b></td>
+          <td>
+            <span class="frontend_blue">
+              <%= @submission.created_at.strftime("%d-%b-%Y\n(%H:%M)") %>
+            </span>
+          </td>
+        </tr>
+        <tr>
+          <td><b>Last updated at:</b></td>
+          <td>
+            <span class="frontend_blue">
+              <%= @submission.updated_at.strftime("%d-%b-%Y\n(%H:%M)") %>
+            </span>
+          </td>
+        </tr>
+        <tr>
+          <td><b>Map link last updated at:</b></td>
+          <td>
+            <span class="frontend_blue">
+              <%= @submission.link_updated_at.strftime("%d-%b-%Y\n(%H:%M)") %>
+            </span>
+          </td>
+        </tr>
+      </table>
+    </fieldset>
+    
+    <% unless @submission.images.empty? %>
+      <div id="image_gallery" style="margin-top:20px;" >
+      <b>Submitted image links:</b>
+      <br />
+      <% @submission.images.each_with_index do |img| %>
+        <%= link_to (image_tag img.link, :size => "320x240"), img.link %>
+      <% end %>
+       </div>
+    <% end %>
+  </div>
+</div>
 
-<p>
-  <b>Name:</b>
-  <%= @submission.name %>
-</p>
 
-<p>
-  <b>Episode:</b>
-  <%= @submission.map_episode.name %>
-</p>
-
-<p>
-  <b>Slot:</b>
-  <%= @submission.map_slot.name %>
-</p>
-
-<p>
-  <b>Author:</b>
-  <%= @submission.map_author.nick %>
-</p>
-
-<p>
-  <b>Link:</b>
-  <%= @submission.link %>
-</p>
-
-
-<%= link_to 'Edit', edit_submission_path(@submission) %> |
-<%= link_to 'Back', submissions_path %>

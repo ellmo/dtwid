@@ -48,7 +48,7 @@
   min-height: 800px;
 }
 
-.news_div {
+.frontend_narrow_div {
   background-color: #282828;
   border: 10px #282828 solid;
   border-radius: 10px;
@@ -57,18 +57,31 @@
   margin-bottom:25px;
 }
 
-.news_title {
+.frontend_wide_div {
+  background-color: #282828;
+  border: 10px #282828 solid;
+  border-radius: 10px;
+  margin-right:40px;
+  min-width: 662px;
+  margin-bottom:25px;
+}
+
+.frontend_title {
   font-size:16px;
   color:#7882C8;
 }
 
-.news_author {
+.frontend_author {
   font-size:11.5px;
   color:#78C878;
 }
 
-.news_content {
+.frontend_content {
   background-color: black;
   border: 8px black solid;
   border-radius: 8px;
+}
+
+.frontend_blue {
+  color:#7882C8;
 }

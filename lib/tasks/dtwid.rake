@@ -19,7 +19,7 @@ namespace :submission do
 end
 
 namespace :user do
-  task :fill_team_with_false do
+  task :fill_team_with_false => :environment do
     User.all.each do |u|
       u.update_attribute :role, false
     end

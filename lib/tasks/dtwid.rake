@@ -4,4 +4,10 @@ namespace :submission do
       sub.update_attribute :link_updated_at, sub.updated_at
     end
   end
+  
+  task :update_image_count => :environment do
+    Submission.all.each do |sub|
+      sub.update_attribute :image_count, sub.images.size
+    end
+  end
 end

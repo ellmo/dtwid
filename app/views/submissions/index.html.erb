@@ -11,7 +11,7 @@
     <th><%= sort_link 'Author', "map_authors.nick", "submissions.created_at" %></th>
     <th><%= sort_link 'Last Link Update', "submissions.link_updated_at" %></th>
     <th><%= sort_link 'Last Update', "submissions.updated_at" %></th>
-    <th>Images</th>
+    <th><%= sort_link 'Images', :image_count %></th>
     <th>Link</th>
     <th></th>
     <th></th>
@@ -36,7 +36,9 @@
       </div>
     </td>
     <td>
-      <%= submission.images.size %>
+      <% if submission.images.size > 0 %>
+        <%= submission.image_count %>
+      <% end %>
     </td>      
     <td><%= link_to (image_tag 'download-icon.png'), submission.link, :title => "Download file from submitted link" %></td>
     <% if can? :update, submission %>

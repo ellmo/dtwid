@@ -17,6 +17,11 @@ class User < ActiveRecord::Base
   after_create :make_author
   after_update :update_author
   
+  def self.find_for_database_authentication(conditions={})
+    self.find_by_nick conditions[:email] or
+    self.find_by_email conditions[:email]
+  end
+  
   def admin?
     self.user_role.name == "admin" or self.superadmin?
   end

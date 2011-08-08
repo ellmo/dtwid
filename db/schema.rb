@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110808100602) do
+ActiveRecord::Schema.define(:version => 20110808175449) do
 
   create_table "map_authors", :force => true do |t|
     t.string   "nick"
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(:version => 20110808100602) do
     t.integer  "intended_map_episode_id"
     t.integer  "intended_map_slot_id"
     t.datetime "link_updated_at"
+    t.integer  "image_count"
   end
 
   create_table "user_roles", :force => true do |t|

@@ -21,7 +21,7 @@ end
 namespace :user do
   task :fill_team_with_false => :environment do
     User.all.each do |u|
-      u.update_attribute :role, false
+      u.update_attribute :team, false
     end
   end
 end

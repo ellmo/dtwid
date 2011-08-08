@@ -17,3 +17,11 @@ namespace :submission do
     end
   end
 end
+
+namespace :user do
+  task :fill_team_with_false do
+    User.all.each do |u|
+      u.update_attribute :role, false
+    end
+  end
+end

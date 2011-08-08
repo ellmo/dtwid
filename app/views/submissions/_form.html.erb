@@ -12,6 +12,7 @@
   <% end %>
   <%= simple_form_for @submission do |f| %>
     <%= f.input :name, :placeholder => "Name of your map", :input_html => { :style => "width:295px"} %>
+    <%= f.association :privacy_level, :include_blank => false %>
     <% if current_user.admin? %>
       <%= f.association :map_author, :collection => MapAuthor.all(:order => 'nick'), :label_method => :info, :include_blank => false, :required => true, :input_html => {:selected => current_user.map_author} %>
     <% end %>

@@ -40,7 +40,13 @@
         <%= submission.image_count %>
       <% end %>
     </td>      
-    <td><%= link_to (image_tag 'download-icon.png'), submission.link, :title => "Download file from submitted link" %></td>
+    <td>
+      <% unless submission.can_download?(current_user) %>
+        <%= image_tag 'download-icon-off.png',:title => "Access denied.\nPrivacy level: #{submission.privacy_level.name}" %>
+      <% else %>
+        <%= link_to (image_tag 'download-icon.png'), submission.link, :title => "Download file from submitted link" %>
+      <% end %>
+    </td>
     <% if can? :update, submission %>
       <td>
         <%= link_to (image_tag 'edit-icon.png'), edit_submission_path(submission), :title => "Edit submission" %>

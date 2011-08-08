@@ -9,8 +9,10 @@
   <div class="frontend_content">
     <%= link_to('Edit', edit_submission_path(@submission)) if (current_user and (current_user == @submission.map_author.user or current_user.admin?)) %>
     <br />
-    <b>Download Link:</b> <%= link_to @submission.link, @submission.link %>
-    <br />
+    <% if @submission.can_download?(current_user) %>
+      <b>Download Link:</b> <%= link_to @submission.link, @submission.link %>
+      <br />
+    <% end %>
     <b>Playable on:</b> <%= "E#{@submission.map_episode.id}#{@submission.map_slot.name} " %>
     <br/>
     

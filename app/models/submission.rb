@@ -4,6 +4,7 @@ class Submission < ActiveRecord::Base
   belongs_to :map_author
   belongs_to :intended_map_episode, :class_name => "MapEpisode"
   belongs_to :intended_map_slot, :class_name => "MapSlot"
+  belongs_to :privacy_level
   
   has_many :images, :class_name => "SubmissionImageLink", :dependent => :destroy
   
@@ -23,6 +24,27 @@ class Submission < ActiveRecord::Base
       when 2 then "tsoh_row"
       when 3 then "inferno_row"
       else "tfc_row"
+    end
+  end
+  
+  def can_download?(user)
+    pl = self.privacy_level.level    
+    if pl == 0
+      true
+    else
+      if user
+        if pl == 1 or user.admin? or user == self.map_author.user
+          true
+        else
+          if pl < 3 and user.team
+            true
+          else
+            false
+          end
+        end
+      else
+        false
+      end
     end
   end
   

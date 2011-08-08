@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110808175449) do
+ActiveRecord::Schema.define(:version => 20110808183751) do
 
   create_table "map_authors", :force => true do |t|
     t.string   "nick"
@@ -36,6 +36,13 @@ ActiveRecord::Schema.define(:version => 20110808175449) do
     t.string   "title"
     t.text     "content"
     t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "privacy_levels", :force => true do |t|
+    t.integer  "level"
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -67,6 +74,7 @@ ActiveRecord::Schema.define(:version => 20110808175449) do
     t.integer  "intended_map_slot_id"
     t.datetime "link_updated_at"
     t.integer  "image_count"
+    t.integer  "privacy_level_id"
   end
 
   create_table "user_roles", :force => true do |t|
@@ -90,6 +98,7 @@ ActiveRecord::Schema.define(:version => 20110808175449) do
     t.datetime "updated_at"
     t.integer  "user_role_id",                          :default => 1,  :null => false
     t.string   "nick"
+    t.boolean  "team"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

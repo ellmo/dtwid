@@ -10,4 +10,10 @@ namespace :submission do
       sub.update_attribute :image_count, sub.images.size
     end
   end
+  
+  task :zero_privacy_levels => :environment do
+    Submission.all.each do |sub|
+      sub.update_attribute :privacy_level_id, PrivacyLevel.find_by_level(0)
+    end
+  end
 end

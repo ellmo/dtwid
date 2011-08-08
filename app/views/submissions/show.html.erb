@@ -7,7 +7,7 @@
   <span class="frontend_author"><%= @submission.map_author.nick %></span>
   <br/>
   <div class="frontend_content">
-    <%= link_to('Edit', edit_submission_path(@submission)) if (current_user == @submission.map_author.user or current_user.admin?) %>
+    <%= link_to('Edit', edit_submission_path(@submission)) if (current_user and (current_user == @submission.map_author.user or current_user.admin?)) %>
     <br />
     <b>Download Link:</b> <%= link_to @submission.link, @submission.link %>
     <br />

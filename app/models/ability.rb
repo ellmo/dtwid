@@ -13,10 +13,11 @@ class Ability
       can :manage, News
     else
       can :read, :all
+      can :search, Submission
       can :create, Submission
       can [:update, :destroy], Submission do |sub|
         sub.map_author.user == user
-      end      
+      end
       can :create, SubmissionImageLink
       can [:update, :destroy], SubmissionImageLink do |sublink|
         sublink.submission.map_author.user == user

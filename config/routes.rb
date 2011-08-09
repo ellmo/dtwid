@@ -10,7 +10,7 @@ Dtwid::Application.routes.draw do
 
   resources :submissions do
     collection do
-      post "search"
+      get "search"
     end
   end
 

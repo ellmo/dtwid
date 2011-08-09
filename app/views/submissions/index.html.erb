@@ -1,7 +1,7 @@
 <h1>Listing submissions</h1>
 
 <div style="margin-top">
-  <%= form_tag search_submissions_path, :method => :post do %>
+  <%= form_tag search_submissions_path, :method => :get do %>
     <%= text_field "search", "s", :value => params[:s] %>
     <%= hidden_field "search", "c", :value => params[:c] %>
     <%= hidden_field "search", "c2", :value => params[:c2] %>

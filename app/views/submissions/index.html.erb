@@ -7,11 +7,16 @@
     <%= hidden_field "search", "c2", :value => params[:c2] %>
     <%= hidden_field "search", "d", :value => params[:d] %>
     <br />
-    <%= radio_button "search", "e", "" %>All
-    <%= radio_button "search", "e", "1" %>KDITD
-    <%= radio_button "search", "e", "2" %>TSOH
-    <%= radio_button "search", "e", "3" %>Inferno
-    <%= radio_button "search", "e", "4" %>TFC
+    <%= radio_button "search", "e", "",
+      {:checked => (params[:e].nil? ? "checked" : "") } %>All
+    <%= radio_button "search", "e", "1",
+      {:checked => (params[:e]=="1" ? "checked" : "") } %>KDITD
+    <%= radio_button "search", "e", "2",
+      {:checked => (params[:e]=="2" ? "checked" : "") } %>TSOH
+    <%= radio_button "search", "e", "3",
+      {:checked => (params[:e]=="3" ? "checked" : "") } %>Inferno
+    <%= radio_button "search", "e", "4",
+      {:checked => (params[:e]=="4" ? "checked" : "") } %>TFC
     <%= button_to "search", "submit_search", :class => "asd" %>
     
   <% end %>

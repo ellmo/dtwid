@@ -53,7 +53,7 @@ class Submission < ActiveRecord::Base
     order_string += ", #{column2} #{order}" if column2
     episode_cond = (episode ? "intended_map_episode_id = #{episode}" : "")
     search_string = "%" + search_string + "%" if search_string
-    search_cond = ((search_string.nil? or search_string.blank?) ? "" : '(name LIKE ? OR map_authors.nick LIKE ?)')
+    search_cond = ((search_string.nil? or search_string.blank?) ? "" : '(UPPER(name) LIKE UPPER(?) OR UPPER(map_authors.nick) LIKE UPPER(?))')
     conj = (episode_cond.present? and search_cond.present?) ? " AND " : ""
     Submission.find(:all,
       :include => :map_author,

@@ -3,14 +3,18 @@ td { padding: 4px; }
 .odd_row { background-color: #282828; }
 .even_row { background-color: #101010; }
 
-.kditd_row { color: #C8C8C8; }
-.kditd_row a { color: #C8C8C8; }
+.kditd_row { color: #7882C8; }
+.kditd_row a { color: #7882C8; }
 
-.tsoh_row { color: #7882C8; }
-.tsoh_row a { color: #7882C8; }
+.tsoh_row { color: #bfa97e; }
+.tsoh_row a { color: #bfa97e; }
 
 .inferno_row { color: #F05A3C; }
 .inferno_row a { color: #F05A3C; }
 
 .tfc_row { color: #78C878; }
 .tfc_row a { color: #78C878; }
+
+.search_radio_box_span {
+  font-size: 11px;
+}

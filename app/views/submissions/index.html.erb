@@ -1,23 +1,42 @@
 <h1>Listing submissions</h1>
 
-<div style="margin-top">
+<div style="margin-top:10px; margin-bottom:30px;">
   <%= form_tag search_submissions_path, :method => :get do %>
     <%= text_field "search", "s", :value => params[:s] %>
     <%= hidden_field "search", "c", :value => params[:c] %>
     <%= hidden_field "search", "c2", :value => params[:c2] %>
     <%= hidden_field "search", "d", :value => params[:d] %>
     <br />
-    <%= radio_button "search", "e", "",
-      {:checked => (params[:e].nil? ? "checked" : "") } %>All
-    <%= radio_button "search", "e", "1",
-      {:checked => (params[:e]=="1" ? "checked" : "") } %>KDITD
-    <%= radio_button "search", "e", "2",
-      {:checked => (params[:e]=="2" ? "checked" : "") } %>TSOH
-    <%= radio_button "search", "e", "3",
-      {:checked => (params[:e]=="3" ? "checked" : "") } %>Inferno
-    <%= radio_button "search", "e", "4",
-      {:checked => (params[:e]=="4" ? "checked" : "") } %>TFC
-    <%= button_to "search", "submit_search", :class => "asd" %>
+    <span>
+      <%= radio_button "search", "e", "",
+        {:checked => (params[:e].nil? ? "checked" : "") } %>
+      <b>All</b>
+    </span>
+    |
+    <span>
+      <%= radio_button "search", "e", "1",
+        {:checked => (params[:e]=="1" ? "checked" : "") } %>
+      <span class="kditd_row search_radio_box_span">Knee-Deep in the Dead</span>
+    </span>
+    |
+    <span>
+      <%= radio_button "search", "e", "2",
+        {:checked => (params[:e]=="2" ? "checked" : "") } %>
+      <span class="tsoh_row search_radio_box_span">The Shores of Hell</span>
+    </span>
+    |
+    <span>
+      <%= radio_button "search", "e", "3",
+        {:checked => (params[:e]=="3" ? "checked" : "") } %>
+      <span class="inferno_row search_radio_box_span">Inferno</span>
+    <span>
+    |
+    <span>
+      <%= radio_button "search", "e", "4",
+        {:checked => (params[:e]=="4" ? "checked" : "") } %>
+      <span class="tfc_row search_radio_box_span">Thy Flesh Consumed</span>
+    </span>
+    <%= button_to "search", "submit_search" %>
     
   <% end %>
 </div>

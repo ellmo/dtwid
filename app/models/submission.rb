@@ -48,6 +48,21 @@ class Submission < ActiveRecord::Base
     end
   end
   
+  def self.ordered_search(column1, order, column2=nil, search_string=nil, episode=nil)
+    order_string = "#{column1} #{order}"
+    order_string += ", #{column2} #{order}" if column2
+    episode_cond = (episode ? "intended_map_episode_id = #{episode}" : "")
+    search_string = "%" + search_string + "%" if search_string
+    search_cond = ((search_string.nil? or search_string.blank?) ? "" : '(name LIKE ? OR map_authors.nick LIKE ?)')
+    conj = (episode_cond.present? and search_cond.present?) ? " AND " : ""
+    Submission.find(:all,
+      :include => :map_author,
+      :conditions => [episode_cond + conj + search_cond, search_string, search_string],
+      :order => order_string)
+  end
+  
+  
+  
   def reject_image_links(attributed)
     attributed['link'].blank?
   end

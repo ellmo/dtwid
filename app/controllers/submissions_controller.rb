@@ -5,21 +5,23 @@ class SubmissionsController < ApplicationController
   # GET /submissions
   # GET /submissions.xml
   def index
-    #@submissions = Submission.all
-    if params[:c1] and params[:d]
-      if params[:c2].nil? or params[:c2].blank?
-        @submissions = Submission.find :all, :include => :map_author, :order => "#{params[:c1]} #{params[:d]}"
-      else
-        @submissions = Submission.find :all, :include => :map_author, :order => "#{params[:c1]} #{params[:d]}, #{params[:c2]} #{params[:d]}"
-      end      
+    request.parameters.reject! {|p| p=="authenticity_token"}
+    if params[:c] and params[:d]
+      @submissions = Submission.ordered_search(params[:c], params[:d], params[:c2], params[:s], params[:e])
     else
-      @submissions = Submission.find :all, :order => "link_updated_at DESC"
+      @submissions = Submission.ordered_search("link_updated_at", "asc", nil, params[:s], params[:e])
     end
 
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @submissions }
     end
+  end
+  
+  def search
+    para = params[:search].reject! { |k,v| v.blank? }
+    para.inspect
+    redirect_to submissions_path(para)
   end
 
   # GET /submissions/1

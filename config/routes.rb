@@ -8,7 +8,11 @@ Dtwid::Application.routes.draw do
     resources :news
   end
 
-  resources :submissions
+  resources :submissions do
+    collection do
+      post "search"
+    end
+  end
 
   get "frontend/index"
   match "about" => "frontend#about"

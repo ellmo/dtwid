@@ -1,59 +1,144 @@
 <H1>SUBMISSION DETAILS:</H1>
+
+<style type="text/css">
+.submission_comment{
+  border-top: 5px solid #282828;
+  margin-left: -8px;
+  margin-right: -8px;
+  margin-top: 20px;
+  padding-left: 8px;
+  padding: 0 8px 0 8px;
+}
+
+.submission_comment_author {
+  margin-left: 16px;
+  background-color: #282828;
+  margin-top: -20px;
+  border: 5px solid #282828;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+#display_options {
+  margin-top: -8px;
+  margin-bottom: 10px;
+  margin-left:20px;
+  background-color: #282828;
+  width: 220px;
+  border: 5px solid #282828;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+textarea {
+  background-color: #101010;
+  color: gainsboro;
+  border: 2px dashed #606060;
+  font-family: verdana;
+}
+</style>
+
 <div class="frontend_wide_div">
   <span class="frontend_title">
     <%= "E#{@submission.intended_map_episode.id}#{@submission.intended_map_slot.name} - #{@submission.name}" %>
+  </span>
+  <span style="font-weight:bold; float:right; margin-right:20px;">
+    <%= link_to('Edit', edit_submission_path(@submission)) if (current_user and (current_user == @submission.map_author.user or current_user.admin?)) %>
   </span>
   <br />
   <span class="frontend_author"><%= @submission.map_author.nick %></span>
   <br/>
   <div class="frontend_content">
-    <%= link_to('Edit', edit_submission_path(@submission)) if (current_user and (current_user == @submission.map_author.user or current_user.admin?)) %>
-    <br />
-    <% if @submission.can_download?(current_user) %>
-      <b>Download Link:</b> <%= link_to @submission.link, @submission.link %>
-      <br />
-    <% end %>
-    <b>Playable on:</b> <%= "E#{@submission.map_episode.id}#{@submission.map_slot.name} " %>
-    <br/>
-    
-    <fieldset style="width:360px; margin-left:120px">
-      <legend>Date information</legend>
-      <table style="width:100%">
-        <tr>
-          <td><b>First created at:</b></td>
-          <td>
-            <span class="frontend_blue">
-              <%= @submission.created_at.strftime("%d-%b-%Y\n(%H:%M)") %>
-            </span>
-          </td>
-        </tr>
-        <tr>
-          <td><b>Last updated at:</b></td>
-          <td>
-            <span class="frontend_blue">
-              <%= @submission.updated_at.strftime("%d-%b-%Y\n(%H:%M)") %>
-            </span>
-          </td>
-        </tr>
-        <tr>
-          <td><b>Map link last updated at:</b></td>
-          <td>
-            <span class="frontend_blue">
-              <%= @submission.link_updated_at.strftime("%d-%b-%Y\n(%H:%M)") %>
-            </span>
-          </td>
-        </tr>
-      </table>
-    </fieldset>
-    
-    <% unless @submission.images.empty? %>
-      <div id="image_gallery" style="margin-top:20px;" >
-      <b>Submitted image links:</b>
-      <br />
-      <% @submission.images.each_with_index do |img| %>
-        <%= link_to (image_tag img.link, :size => "320x240"), img.link %>
+    <div id="display_options">
+      <%= link_to_function 'Toggle Images', "$('#image_gallery').toggle();" %>
+      <%= link_to_function 'Toggle Date Info', "$('#date_info').toggle();" %>
+    </div>
+    <div id="details">
+      <% if @submission.can_download?(current_user) %>
+        <b>Download Link:</b> <%= link_to @submission.link, @submission.link %>
+        <br />
       <% end %>
-       </div>
+      <b>Playable on:</b> <%= "E#{@submission.map_episode.id}#{@submission.map_slot.name} " %>
+      <br/>    
+
+      <div id="date_info" style="display:none">
+        <fieldset style="width:360px; margin-left:120px">
+          <legend>Date information</legend>
+          <table style="width:100%">
+            <tr>
+              <td><b>First created at:</b></td>
+              <td>
+                <span class="frontend_blue">
+                  <%= @submission.created_at.strftime("%d-%b-%Y\n(%H:%M)") %>
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td><b>Last updated at:</b></td>
+              <td>
+                <span class="frontend_blue">
+                  <%= @submission.updated_at.strftime("%d-%b-%Y\n(%H:%M)") %>
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td><b>Map link last updated at:</b></td>
+              <td>
+                <span class="frontend_blue">
+                  <%= @submission.link_updated_at.strftime("%d-%b-%Y\n(%H:%M)") %>
+                </span>
+              </td>
+            </tr>
+          </table>
+        </fieldset>
+      </div>
+    
+      <% unless @submission.images.empty? %>
+        <div id="image_gallery" style="margin-top:20px;" >
+          <b>Submitted image links:</b>
+          <br />
+          <% @submission.images.each_with_index do |img| %>
+            <%= link_to (image_tag img.link, :size => "320x240"), img.link %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+    
+    <% if user_signed_in? %>
+      <div id="comment_form">
+        <%= simple_form_for @comment do |f| %>
+          <%= f.input :submission_id, :as => :hidden %>
+          <%= f.input :comment, :as => :text, :label => false, :input_html => { :rows => 4, :cols => 70 } %>
+          <%= f.button :submit, :value => "Add comment" %>
+        <% end %>
+      </div>
+    <% end %>
+    
+    <% if @submission.comments.size > 1 %>
+      <div id="comments">
+      <br/>
+        <span style="margin-bottom:-20px; margin-top:20px;"><b>Comments:</b></span>
+        <% @submission.comments.all(:order => "created_at DESC").each do |comment| %>
+          <div class="submission_comment">
+            <% if user_signed_in? and current_user == comment.user %>
+              <div style="float:right; margin-top:4px; margin-left: -5px">
+                <%= link_to (image_tag "delete-icon.png", :size => "18x18"), comment, :confirm => 'Are you sure?', :method => :delete %>
+              </div>
+            <% end %>
+            <span class="submission_comment_author">
+              <span style="color:#7882C8">
+                <%= comment.user.nick %>
+              </span> wrote on
+              <span style="color:#7882C8">
+                <%= comment.created_at.strftime("%d-%b-%Y\n(%H:%M)") %>
+              </span>
+            </span>
+            <div style="margin-top:10px">
+              <%= h comment.comment %>
+            </div>
+          </div>
+        <% end %>
+      </div>
     <% end %>
   </div>
 </div>

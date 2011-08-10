@@ -7,6 +7,7 @@ class Submission < ActiveRecord::Base
   belongs_to :privacy_level
   
   has_many :images, :class_name => "SubmissionImageLink", :dependent => :destroy
+  has_many :comments, :class_name => "SubmissionComment", :dependent => :destroy
   
   accepts_nested_attributes_for :images, :reject_if => :reject_image_links, :allow_destroy => true
   

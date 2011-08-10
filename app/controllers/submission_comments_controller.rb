@@ -1,4 +1,5 @@
 class SubmissionCommentsController < ApplicationController
+  before_filter :authenticate_user!
   # GET /submission_comments
   # GET /submission_comments.xml
   def index
@@ -41,10 +42,12 @@ class SubmissionCommentsController < ApplicationController
   # POST /submission_comments.xml
   def create
     @submission_comment = SubmissionComment.new(params[:submission_comment])
+    @submission_comment.user = current_user
 
     respond_to do |format|
       if @submission_comment.save
-        format.html { redirect_to(@submission_comment, :notice => 'Submission comment was successfully created.') }
+        format.html { redirect_to @submission_comment.submission }
+        #format.html { redirect_to(@submission_comment, :notice => 'Submission comment was successfully created.') }
         format.xml  { render :xml => @submission_comment, :status => :created, :location => @submission_comment }
       else
         format.html { render :action => "new" }
@@ -76,7 +79,8 @@ class SubmissionCommentsController < ApplicationController
     @submission_comment.destroy
 
     respond_to do |format|
-      format.html { redirect_to(submission_comments_url) }
+      format.html { redirect_to @submission_comment.submission }
+      #format.html { redirect_to(submission_comments_url) }
       format.xml  { head :ok }
     end
   end

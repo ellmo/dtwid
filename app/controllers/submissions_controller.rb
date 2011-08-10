@@ -28,6 +28,7 @@ class SubmissionsController < ApplicationController
   # GET /submissions/1.xml
   def show
     @submission = Submission.find(params[:id])
+    @comment = @submission.comments.build
 
     respond_to do |format|
       format.html # show.html.erb

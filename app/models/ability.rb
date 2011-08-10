@@ -18,9 +18,11 @@ class Ability
       can [:update, :destroy], Submission do |sub|
         sub.map_author.user == user
       end
-      can :create, SubmissionImageLink
-      can [:update, :destroy], SubmissionImageLink do |sublink|
+      can [:create, :update, :destroy], SubmissionImageLink do |sublink|
         sublink.submission.map_author.user == user
+      end
+      can [:create, :update, :destroy], SubmissionComment do |subcomment|
+        subcomment.user == user
       end
     end
     #

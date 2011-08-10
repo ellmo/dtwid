@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   
   has_many :submissions
   has_many :news
+  has_many :comments, :class_name => "SubmissionComment"
   has_one :map_author
   belongs_to :user_role
   

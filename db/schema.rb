@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110808183751) do
+ActiveRecord::Schema.define(:version => 20110809224305) do
 
   create_table "map_authors", :force => true do |t|
     t.string   "nick"
@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(:version => 20110808183751) do
   create_table "submission_comments", :force => true do |t|
     t.integer  "submission_id"
     t.integer  "user_id"
-    t.string   "comment"
+    t.text     "comment",       :limit => 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end

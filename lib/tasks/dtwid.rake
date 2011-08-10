@@ -16,6 +16,12 @@ namespace :submission do
       sub.update_attribute :privacy_level_id, PrivacyLevel.find_by_level(0)
     end
   end
+  
+  task :update_comment_count => :environment do
+    Submission.all.each do |sub|
+      sub.update_attribute :comment_count, sub.comments.size
+    end
+  end
 end
 
 namespace :user do

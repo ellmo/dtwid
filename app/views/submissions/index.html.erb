@@ -52,6 +52,7 @@
     <th><%= sort_link 'Author', "map_authors.nick", "submissions.created_at" %></th>
     <th><%= sort_link 'Last Link Update', "submissions.link_updated_at" %></th>
     <th><%= sort_link 'Last Update', "submissions.updated_at" %></th>
+    <th><%= sort_link 'Comments', :comment_count %></th>
     <th><%= sort_link 'Images', :image_count %></th>
     <th>Link</th>
     <th></th>
@@ -76,9 +77,14 @@
         <%= submission.updated_at.strftime("%d-%b-%Y\n(%H:%M)") %>
       </div>
     </td>
+        <td>
+      <% if submission.comments.size > 0 %>
+        <div style="width:100%; text-align:center;"><%= submission.comment_count %></div>
+      <% end %>
+    </td>  
     <td>
       <% if submission.images.size > 0 %>
-        <%= submission.image_count %>
+        <div style="width:100%; text-align:center;"><%= submission.image_count %></div>
       <% end %>
     </td>      
     <td>

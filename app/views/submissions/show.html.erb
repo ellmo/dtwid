@@ -110,7 +110,7 @@ textarea {
       <div id="comment_form">
         <%= simple_form_for @comment do |f| %>
           <%= f.input :submission_id, :as => :hidden %>
-          <%= f.input :comment, :as => :text, :label => false, :input_html => {:class => "mceEditor"}  %>
+          <%= f.input :comment, :as => :text, :label => false, :input_html => {:class => "mceEditor", :rows => 4, :cols => 80 }  %>
           <%= f.button :submit, :value => "Add comment" %>
         <% end %>
       </div>

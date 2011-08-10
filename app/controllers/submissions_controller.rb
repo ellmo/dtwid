@@ -1,6 +1,7 @@
 class SubmissionsController < ApplicationController
   before_filter :authenticate_user!, :except => [:show, :index, :search]
   load_and_authorize_resource
+  uses_tiny_mce
 
   # GET /submissions
   # GET /submissions.xml
@@ -9,7 +10,7 @@ class SubmissionsController < ApplicationController
     if params[:c1] and params[:d]
       @submissions = Submission.ordered_search(params[:c1], params[:d], params[:c2], params[:s], params[:e])
     else
-      @submissions = Submission.ordered_search("link_updated_at", "asc", nil, params[:s], params[:e])
+      @submissions = Submission.ordered_search("link_updated_at", "desc", nil, params[:s], params[:e])
     end
 
     respond_to do |format|

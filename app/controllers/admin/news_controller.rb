@@ -4,7 +4,7 @@ class Admin::NewsController < ApplicationController
   # GET /admin/news
   # GET /admin/news.xml
   def index
-    @news = News.all
+    @news = News.all(:order => "created_at DESC")
 
     respond_to do |format|
       format.html # index.html.erb

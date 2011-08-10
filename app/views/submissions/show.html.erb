@@ -1,3 +1,5 @@
+<%= include_tiny_mce_if_needed %>
+
 <H1>SUBMISSION DETAILS:</H1>
 
 <style type="text/css">
@@ -108,7 +110,7 @@ textarea {
       <div id="comment_form">
         <%= simple_form_for @comment do |f| %>
           <%= f.input :submission_id, :as => :hidden %>
-          <%= f.input :comment, :as => :text, :label => false, :input_html => { :rows => 4, :cols => 70 } %>
+          <%= f.input :comment, :as => :text, :label => false, :input_html => {:class => "mceEditor"}  %>
           <%= f.button :submit, :value => "Add comment" %>
         <% end %>
       </div>
@@ -134,7 +136,7 @@ textarea {
               </span>
             </span>
             <div style="margin-top:10px">
-              <%= h comment.comment %>
+              <%= raw comment.comment %>
             </div>
           </div>
         <% end %>

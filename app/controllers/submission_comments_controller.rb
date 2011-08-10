@@ -1,5 +1,6 @@
 class SubmissionCommentsController < ApplicationController
   before_filter :authenticate_user!
+  
   # GET /submission_comments
   # GET /submission_comments.xml
   def index

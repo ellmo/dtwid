@@ -1,5 +1,7 @@
 Dtwid::Application.routes.draw do
 
+  resources :votes
+
   resources :submission_comments
 
   namespace :admin do    

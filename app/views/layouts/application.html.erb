@@ -40,8 +40,8 @@
         <% if current_user.superadmin? %>
           <div style="margin-left:30px; font-weight:bold">Superadmin stuff:</div>
           <ul>
-            <li><%= link_to "Users", admin_users_path %></li>
             <li><%= link_to "Admin / Users", admin_users_path %></li>
+            <li><%= link_to "Admin / MapAuthors", admin_map_authors_path %></li>
           </ul>
         <% end %>          
       <% end %>

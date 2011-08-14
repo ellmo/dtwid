@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110810161717) do
+ActiveRecord::Schema.define(:version => 20110814223316) do
 
   create_table "map_authors", :force => true do |t|
     t.string   "nick"
@@ -76,6 +76,8 @@ ActiveRecord::Schema.define(:version => 20110810161717) do
     t.integer  "image_count"
     t.integer  "privacy_level_id"
     t.integer  "comment_count"
+    t.integer  "aye_votes"
+    t.integer  "nay_votes"
   end
 
   create_table "user_roles", :force => true do |t|
@@ -105,5 +107,14 @@ ActiveRecord::Schema.define(:version => 20110810161717) do
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["nick"], :name => "index_users_on_nick", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "votes", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "submission_id"
+    t.integer  "points",        :limit => 1
+    t.text     "comment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

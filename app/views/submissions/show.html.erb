@@ -3,41 +3,42 @@
 <H1>SUBMISSION DETAILS:</H1>
 
 <style type="text/css">
-.submission_comment{
-  border-top: 5px solid #282828;
-  margin-left: -8px;
-  margin-right: -8px;
-  margin-top: 20px;
-  padding-left: 8px;
-  padding: 0 8px 0 8px;
-}
+  .submission_comment{
+    border-top: 5px solid #282828;
+    margin-left: -8px;
+    margin-right: -8px;
+    margin-top: 20px;
+    padding-left: 8px;
+    padding: 0 8px 0 8px;
+  }
 
-.submission_comment_author {
-  margin-left: 16px;
-  background-color: #282828;
-  margin-top: -20px;
-  border: 5px solid #282828;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
-}
+  .submission_comment_author {
+    margin-left: 16px;
+    background-color: #282828;
+    margin-top: -20px;
+    border: 5px solid #282828;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
 
-#display_options {
-  margin-top: -8px;
-  margin-bottom: 10px;
-  margin-left:20px;
-  background-color: #282828;
-  width: 220px;
-  border: 5px solid #282828;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
-}
+  #display_options {
+    margin-top: -8px;
+    margin-bottom: 10px;
+    margin-left:20px;
+    background-color: #282828;
+    width: 280px;
+    border: 5px solid #282828;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    text-align: center;
+  }
 
-textarea {
-  background-color: #101010;
-  color: gainsboro;
-  border: 2px dashed #606060;
-  font-family: verdana;
-}
+  textarea {
+    background-color: #101010;
+    color: gainsboro;
+    border: 2px dashed #606060;
+    font-family: verdana;
+  }
 </style>
 
 <div class="frontend_wide_div">
@@ -54,6 +55,9 @@ textarea {
     <div id="display_options">
       <%= link_to_function 'Toggle Images', "$('#image_gallery').toggle();" %>
       <%= link_to_function 'Toggle Date Info', "$('#date_info').toggle();" %>
+      <% if user_signed_in? and can?(:create, Vote) %>
+        <%= link_to_function 'Voting', "$('#voting').toggle();" %>
+      <% end %>
     </div>
     <div id="details">
       <% if @submission.can_download?(current_user) %>
@@ -62,7 +66,27 @@ textarea {
       <% end %>
       <b>Playable on:</b> <%= "E#{@submission.map_episode.id}#{@submission.map_slot.name} " %>
       <br/>    
-
+      
+      <% if user_signed_in? and can?(:create, Vote) %>
+        <div id="voting">
+          The crew has voted:<br />
+          <span style="color:green">AYE!</span> <%= @submission.aye_votes %> times<br />
+          <span style="color:red">NAY!</span> <%= @submission.nay_votes %> times<br />
+          <% if current_user.can_vote_on_map?(@submission.id) %>
+            <%= simple_form_for @vote do |f| %>
+              <%= f.input :points, :as => :hidden, :input_html => {:value => 'aye'} %>
+              <%= f.input :submission_id, :as => :hidden, :input_html => {:value => @submission.id} %>
+              <%= f.button :submit, :value => "AYE!" %>
+            <% end %>
+            <%= simple_form_for @vote do |f| %>
+              <%= f.input :points, :as => :hidden, :input_html => {:value => 'nay'} %>
+              <%= f.input :submission_id, :as => :hidden, :input_html => {:value => @submission.id} %>
+              <%= f.button :submit, :value => "NAY!" %>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+      
       <div id="date_info" style="display:none">
         <fieldset style="width:360px; margin-left:120px">
           <legend>Date information</legend>

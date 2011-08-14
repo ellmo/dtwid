@@ -54,6 +54,10 @@
     <th><%= sort_link 'Last Update', "submissions.updated_at" %></th>
     <th><%= sort_link 'Comments', :comment_count %></th>
     <th><%= sort_link 'Images', :image_count %></th>
+    <% if user_signed_in? and current_user.team %>
+      <th><%= sort_link 'Aye!', :aye_votes %></th>
+      <th><%= sort_link 'Nay.', :nay_votes %></th>
+    <% end %>
     <th>Link</th>
     <th></th>
     <th></th>
@@ -77,7 +81,7 @@
         <%= submission.updated_at.strftime("%d-%b-%Y\n(%H:%M)") %>
       </div>
     </td>
-        <td>
+    <td>
       <% if submission.comments.size > 0 %>
         <div style="width:100%; text-align:center;"><%= submission.comment_count %></div>
       <% end %>
@@ -86,7 +90,15 @@
       <% if submission.images.size > 0 %>
         <div style="width:100%; text-align:center;"><%= submission.image_count %></div>
       <% end %>
-    </td>      
+    </td>
+    <% if user_signed_in? and current_user.team %>
+      <td>
+        <div style="color:green; text-align:center;"><%= submission.aye_votes %></div>
+      </td>
+      <td>
+        <div style="color:red; text-align:center;"><%= submission.nay_votes %></div>
+      </td>
+    <% end %>
     <td>
       <% unless submission.can_download?(current_user) %>
         <%= image_tag 'download-icon-off.png',:title => "Access denied.\nPrivacy level: #{submission.privacy_level.name}" %>

@@ -11,7 +11,7 @@ class Ability
       can :manage, Submission
       can :manage, SubmissionImageLink
       can :manage, News
-    else
+    elsif user.registered?
       can :read, :all
       can :search, Submission
       can :create, Submission
@@ -24,6 +24,16 @@ class Ability
       can [:create, :update, :destroy], SubmissionComment do |subcomment|
         subcomment.user == user
       end
+      can :create, Vote do |vote|
+        user.team
+      end
+      can :update, Vote do |vote|
+        user.team and vote.user == user
+      end
+    else
+      can :read, Submission
+      can :read, SubmissionComment
+      can :read, SubmissionImageLink
     end
     #
     # The first argument to `can` is the action you are giving the user permission to do.

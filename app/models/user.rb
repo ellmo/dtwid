@@ -5,11 +5,13 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :nick, :email, :password, :password_confirmation, :remember_me
+  attr_accessible :nick, :email, :password, :team,
+    :password_confirmation, :remember_me
   
   has_many :submissions
   has_many :news
   has_many :comments, :class_name => "SubmissionComment"
+  has_many :votes, :dependent => :destroy
   has_one :map_author
   belongs_to :user_role
   
@@ -23,12 +25,20 @@ class User < ActiveRecord::Base
     self.find_by_email conditions[:email]
   end
   
+  def registered?
+    self.id
+  end  
+  
   def admin?
     self.user_role.name == "admin" or self.superadmin?
   end
   
   def superadmin?
     self.user_role.name == "superadmin"
+  end
+  
+  def can_vote_on_map?(sub_id)
+    return !votes.find_by_submission_id(sub_id)
   end
   
   def make_author

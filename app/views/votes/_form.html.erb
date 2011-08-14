@@ -1,0 +1,14 @@
+<%= simple_form_for(@vote) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="inputs">
+    <%= f.input :user_id %>
+    <%= f.input :submission_id %>
+    <%= f.input :points %>
+    <%= f.input :comment %>
+  </div>
+
+  <div class="actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

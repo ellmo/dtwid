@@ -10,6 +10,11 @@ UserRole.create(:name => 'user')
 UserRole.create(:name => 'admin')
 UserRole.create(:name => 'superadmin')
 
+PrivacyLevel.create(:name => 'open', :level => 0)
+PrivacyLevel.create(:name => 'users only', :level => 1)
+PrivacyLevel.create(:name => 'team only', :level => 2)
+PrivacyLevel.create(:name => 'private', :level => 3)
+
 MapEpisode.create(:name => 'Knee-Deep in the Dead')
 MapEpisode.create(:name => 'The Shores of Hell')
 MapEpisode.create(:name => 'Inferno')

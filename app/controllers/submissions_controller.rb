@@ -29,7 +29,12 @@ class SubmissionsController < ApplicationController
   # GET /submissions/1.xml
   def show
     @submission = Submission.find(params[:id])
-    @comment = @submission.comments.build
+    if user_signed_in? and can?( :create, SubmissionComment )
+      @comment = @submission.comments.build
+    end
+    if user_signed_in? and can?( :create, Vote )
+      @vote = @submission.votes.build
+    end
 
     respond_to do |format|
       format.html # show.html.erb

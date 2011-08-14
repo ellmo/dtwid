@@ -8,6 +8,7 @@ class Submission < ActiveRecord::Base
   
   has_many :images, :class_name => "SubmissionImageLink", :dependent => :destroy
   has_many :comments, :class_name => "SubmissionComment", :dependent => :destroy
+  has_many :votes, :dependent => :destroy
   
   accepts_nested_attributes_for :images, :reject_if => :reject_image_links, :allow_destroy => true
   
@@ -62,7 +63,13 @@ class Submission < ActiveRecord::Base
       :order => order_string)
   end
   
+  def aye_votes
+    self.votes.where("points = 1").size
+  end
   
+  def nay_votes
+    self.votes.where("points = -1").size
+  end
   
   def reject_image_links(attributed)
     attributed['link'].blank?

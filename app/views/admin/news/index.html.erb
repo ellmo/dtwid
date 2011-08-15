@@ -1,5 +1,7 @@
 <h1>Listing News</h1>
 
+<%= link_to 'New News', new_admin_news_path %>
+
 <table>
   <tr>
     <th>Title</th>
@@ -10,15 +12,16 @@
     <th></th>
   </tr>
 
-<% @news.each do |news| %>
-  <tr>
+<% @news.each_with_index do |news, index| %>
+  <%= content_tag :tr,
+      :class => ((index%2 == 1) ? 'odd_row ' : 'even_row ' ) do %>
     <td><%= news.title %></td>
     <td><%= raw news.content %></td>
     <td><%= news.user_id %></td>
     <td><%= link_to 'Show', [:admin, news] %></td>
     <td><%= link_to 'Edit', edit_admin_news_path(news) %></td>
     <td><%= link_to 'Destroy', [:admin, news], :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
+  <% end %>
 <% end %>
 </table>
 

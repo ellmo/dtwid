@@ -44,17 +44,20 @@ class VotesController < ApplicationController
   # POST /votes.xml
   def create
     @vote = Vote.new(params[:vote])
-    @vote.user = current_user
-    @vote.points = params[:vote][:points] == 'aye' ? 1 : -1
-
-    respond_to do |format|
-      if @vote.save
-        format.html { redirect_to(@vote.submission, :notice => 'Thou hast voted!') }
-        format.xml  { render :xml => @vote, :status => :created, :location => @vote }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @vote.errors, :status => :unprocessable_entity }
+    if current_user.can_vote_on_map?(@vote.submission.id)
+      @vote.user = current_user
+      @vote.points = params[:vote][:points] == 'aye' ? 1 : -1
+      respond_to do |format|
+        if @vote.save
+          format.html { redirect_to(@vote.submission, :notice => 'Thou hast voted!') }
+          format.xml  { render :xml => @vote, :status => :created, :location => @vote }
+        else
+          format.html { render :action => "new" }
+          format.xml  { render :xml => @vote.errors, :status => :unprocessable_entity }
+        end
       end
+    else
+      redirect_to(@vote.submission, :notice => 'Thou shall not cheat!')
     end
   end
 

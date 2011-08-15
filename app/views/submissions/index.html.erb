@@ -52,15 +52,16 @@
     <th><%= sort_link 'Author', "map_authors.nick", "submissions.created_at" %></th>
     <th><%= sort_link 'Last Link Update', "submissions.link_updated_at" %></th>
     <th><%= sort_link 'Last Update', "submissions.updated_at" %></th>
-    <th><%= sort_link 'Comments', :comment_count %></th>
-    <th><%= sort_link 'Images', :image_count %></th>
+    <th><%= sort_link 'Cmt', :comment_count %></th>
+    <th><%= sort_link 'Img', :image_count %></th>
     <% if user_signed_in? and current_user.team %>
-      <th><%= sort_link 'Aye!', :aye_votes %></th>
-      <th><%= sort_link 'Nay.', :nay_votes %></th>
+      <th>Voted</th>
+      <th><%= sort_link 'Aye', :aye_votes %></th>
+      <th><%= sort_link 'Nay', :nay_votes %></th>
     <% end %>
     <th>Link</th>
-    <th></th>
-    <th></th>
+    <th>Edit</th>
+    <th>Kill</th>
   </tr>
 
 <% @submissions.each_with_index do |submission, index| %>
@@ -92,6 +93,11 @@
       <% end %>
     </td>
     <% if user_signed_in? and current_user.team %>
+      <td>
+        <div style="text-align:center;">
+        <%= current_user.can_vote_on_map?(submission.id) ? image_tag('not_voted.png') : image_tag('voted.png') %>
+        </div>
+      </td>
       <td>
         <div style="color:green; text-align:center;"><%= submission.aye_votes %></div>
       </td>

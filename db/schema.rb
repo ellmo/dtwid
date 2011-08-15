@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110814223316) do
+ActiveRecord::Schema.define(:version => 20110815005728) do
 
   create_table "map_authors", :force => true do |t|
     t.string   "nick"
@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(:version => 20110814223316) do
     t.integer  "comment_count"
     t.integer  "aye_votes"
     t.integer  "nay_votes"
+    t.text     "author_comment"
   end
 
   create_table "user_roles", :force => true do |t|

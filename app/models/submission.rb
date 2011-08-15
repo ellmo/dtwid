@@ -64,11 +64,12 @@ class Submission < ActiveRecord::Base
   end
   
   def aye_votes
-    self.votes.where("points = 1").size
+    Vote.count(:conditions => "submission_id=#{self.id} AND points=1" )
+    #self.votes.where("points = 1").size
   end
   
   def nay_votes
-    self.votes.where("points = -1").size
+    Vote.count(:conditions => "submission_id=#{self.id} AND points=-1" )
   end
   
   def reject_image_links(attributed)

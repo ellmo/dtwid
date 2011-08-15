@@ -5,11 +5,41 @@
 <p id="notice"><%= notice %></p>
 
 <style type="text/css">
+  #submission_description {
+    border-top: 5px solid #282828;
+    border-bottom: 5px solid #282828;
+    margin-left: -8px;
+    margin-right: -8px;
+    margin-top: 10px;
+    padding: 0 8px 0 8px;
+    padding: 0 8px 0 8px;
+  }
+  
+  #description_span {
+    font-weight: bold;
+    background-color: #282828;
+    border: 4px #282828 solid;
+    margin-left: -10px;
+    padding: 2px;
+    border-bottom-right-radius: 5px;
+    color: #7882C8;
+  }
+  
+  #comments_span {
+    margin-top: 10px;
+    background-color: #282828;
+    padding: 4px;
+    margin-left: -8px;
+    font-weight: bold;
+    border: 2px #282828 solid;
+    border-top-right-radius: 8px;  
+  }
+
   .submission_comment{
     border-top: 5px solid #282828;
     margin-left: -8px;
     margin-right: -8px;
-    margin-top: 20px;
+    margin-bottom: 20px;
     padding-left: 8px;
     padding: 0 8px 0 8px;
   }
@@ -28,7 +58,7 @@
     margin-bottom: 10px;
     margin-left:20px;
     background-color: #282828;
-    width: 280px;
+    width: 320px;
     border: 5px solid #282828;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
@@ -55,8 +85,10 @@
   <br/>
   <div class="frontend_content">
     <div id="display_options">
-      <%= link_to_function 'Toggle Images', "$('#image_gallery').toggle();" %>
-      <%= link_to_function 'Toggle Date Info', "$('#date_info').toggle();" %>
+      Toggle:
+      <%= link_to_function 'Images', "$('#image_gallery').toggle();" %>
+      <%= link_to_function 'Descritpion', "$('#submission_description').toggle();" %>
+      <%= link_to_function 'Date Info', "$('#date_info').toggle();" %>
       <% if user_signed_in? and can?(:create, Vote) %>
         <%= link_to_function 'Voting', "$('#voting').toggle();" %>
       <% end %>
@@ -88,6 +120,11 @@
           <% end %>
         </div>
       <% end %>
+      
+      <div id="submission_description">
+        <span id="description_span">DESCRIPTION:</span><br />
+        <%= raw @submission.author_comment %>
+      </div>
       
       <div id="date_info" style="display:none">
         <fieldset style="width:360px; margin-left:120px">
@@ -145,7 +182,7 @@
     <% if @submission.comments.size > 1 %>
       <div id="comments">
       <br/>
-        <span style="margin-bottom:-20px; margin-top:20px;"><b>Comments:</b></span>
+        <span id="comments_span">Comments:</span>
         <% @submission.comments.all(:order => "created_at DESC").each do |comment| %>
           <div class="submission_comment">
             <% if user_signed_in? and current_user == comment.user %>

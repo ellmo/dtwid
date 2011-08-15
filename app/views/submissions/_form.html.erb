@@ -1,3 +1,5 @@
+<%= include_tiny_mce_if_needed %>
+
 <%= form_for(@submission) do |f| %>
   <% if @submission.errors.any? %>
     <div id="error_explanation">
@@ -26,7 +28,8 @@
       <%= f.association :intended_map_episode, :include_blank => false, :label => false %>
       <%= f.association :intended_map_slot, :collection => MapSlot.all(:order => :id), :include_blank => false, :label => false %>
     </fieldset>
-    <%= f.input :link, :as => :url, :required => true, :placeholder => "http://your_awesome_map.wad" %>
+    <%= f.input :author_comment, :as => :text, :input_html => {:class => "mceEditor", :rows => 10, :cols => 40 } %>
+    <%= f.input :link, :as => :url, :required => true, :placeholder => "http://your_awesome_map.wad_or_zip" %>
     
     <fieldset>
     <legend>Include image links</legend>

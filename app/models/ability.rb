@@ -24,11 +24,11 @@ class Ability
       can [:create, :update, :destroy], SubmissionComment do |subcomment|
         subcomment.user == user
       end
-      can :create, Vote do |vote|
-        user.team
-      end
-      can :update, Vote do |vote|
-        user.team and vote.user == user
+      if user.team
+        can :create, Vote
+        can :update, Vote do |vote|
+          vote.user == user
+        end
       end
     else
       can :read, Submission

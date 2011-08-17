@@ -3,6 +3,10 @@ class FrontendController < ApplicationController
     @news = News.all(:order => 'created_at DESC')
   end
   
+  def gallery
+    @gallery_images = GalleryImage.all(:order => 'created_at DESC')
+  end
+  
   def about
   end
   

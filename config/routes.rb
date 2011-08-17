@@ -1,5 +1,7 @@
 Dtwid::Application.routes.draw do
 
+  namespace :admin do resources :gallery_images end
+
   resources :votes
 
   resources :submission_comments
@@ -19,6 +21,7 @@ Dtwid::Application.routes.draw do
   get "frontend/index"
   match "about" => "frontend#about"
   match "contact" => "frontend#contact"
+  match "gallery" => "frontend#gallery"
 
   devise_for :users
 

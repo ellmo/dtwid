@@ -1,0 +1,21 @@
+<style type="text/css">
+
+</style>
+
+<H1>ARTWORK GALLERY:</H1>
+
+<div class="frontend_wide_div" style="width:680px;">
+  <div class="frontend_content">
+    <%= content_tag :div, :style => "height:#{(150*((@gallery_images.size+3)/4)).to_i}px" do %>
+      <% @gallery_images.each do |image| %>
+        <div style="float:left; position:relative; width:160px; height:150px; margin-left:5px;">
+          <%= link_to (image_tag image.thumbnail_url, :size => "160x120"), image.image_url %><br />
+          <div style="wdith:100%; text-align:center;">
+            <%= image.title %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+

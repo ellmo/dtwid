@@ -11,8 +11,12 @@ class Ability
       can :manage, Submission
       can :manage, SubmissionImageLink
       can :manage, News
+      can :manage, GalleryImage
     elsif user.registered?
       can :read, :all
+      can :update, User do |u|
+        u == user
+      end
       can :search, Submission
       can :create, Submission
       can [:update, :destroy], Submission do |sub|

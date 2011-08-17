@@ -1,0 +1,13 @@
+<%= simple_form_for([:admin, @gallery_image]) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="inputs">
+    <%= f.input :title %>
+    <%= f.input :image_url, :as => :url %>
+    <%= f.input :thumbnail_url, :as => :url %>
+  </div>
+
+  <div class="actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

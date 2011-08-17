@@ -162,7 +162,7 @@
         <div id="image_gallery" style="margin-top:20px;" >
           <b>Submitted image links:</b>
           <br />
-          <% @submission.images.each_with_index do |img| %>
+          <% @submission.images.each do |img| %>
             <%= link_to (image_tag img.link, :size => "320x240"), img.link %>
           <% end %>
         </div>

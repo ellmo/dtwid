@@ -1,0 +1,27 @@
+<h1>Listing admin_gallery_images</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Title</th>
+    <th>Thumb</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @gallery_images.each do |gallery_image| %>
+  <tr>
+    <td><%= gallery_image.user.nick %></td>
+    <td><%= gallery_image.title %></td>
+    <td><%= link_to (image_tag gallery_image.thumbnail_url), gallery_image.image_url %></td>
+    <td><%= link_to 'Show', [:admin, gallery_image] %></td>
+    <td><%= link_to 'Edit', edit_admin_gallery_image_path(gallery_image) %></td>
+    <td><%= link_to 'Destroy', [:admin, gallery_image], :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Gallery image', new_admin_gallery_image_path %>

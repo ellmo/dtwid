@@ -2,7 +2,7 @@ class Admin::GalleryImagesController < ApplicationController
   # GET /admin/gallery_images
   # GET /admin/gallery_images.xml
   def index
-    @gallery_images = Admin::GalleryImage.all
+    @gallery_images = GalleryImage.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +13,7 @@ class Admin::GalleryImagesController < ApplicationController
   # GET /admin/gallery_images/1
   # GET /admin/gallery_images/1.xml
   def show
-    @gallery_image = Admin::GalleryImage.find(params[:id])
+    @gallery_image = GalleryImage.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -24,7 +24,7 @@ class Admin::GalleryImagesController < ApplicationController
   # GET /admin/gallery_images/new
   # GET /admin/gallery_images/new.xml
   def new
-    @gallery_image = Admin::GalleryImage.new
+    @gallery_image = GalleryImage.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -34,13 +34,13 @@ class Admin::GalleryImagesController < ApplicationController
 
   # GET /admin/gallery_images/1/edit
   def edit
-    @gallery_image = Admin::GalleryImage.find(params[:id])
+    @gallery_image = GalleryImage.find(params[:id])
   end
 
   # POST /admin/gallery_images
   # POST /admin/gallery_images.xml
   def create
-    @gallery_image = Admin::GalleryImage.new(params[:gallery_image])
+    @gallery_image = GalleryImage.new(params[:gallery_image])
     @gallery_image.user = current_user
 
     respond_to do |format|
@@ -57,7 +57,7 @@ class Admin::GalleryImagesController < ApplicationController
   # PUT /admin/gallery_images/1
   # PUT /admin/gallery_images/1.xml
   def update
-    @gallery_image = Admin::GalleryImage.find(params[:id])
+    @gallery_image = GalleryImage.find(params[:id])
 
     respond_to do |format|
       if @gallery_image.update_attributes(params[:gallery_image])
@@ -73,7 +73,7 @@ class Admin::GalleryImagesController < ApplicationController
   # DELETE /admin/gallery_images/1
   # DELETE /admin/gallery_images/1.xml
   def destroy
-    @gallery_image = Admin::GalleryImage.find(params[:id])
+    @gallery_image = GalleryImage.find(params[:id])
     @gallery_image.destroy
 
     respond_to do |format|

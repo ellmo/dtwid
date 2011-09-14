@@ -50,7 +50,7 @@
     <th><%= sort_link 'Playing MapSlot', :map_episode_id, :map_slot_id %></th>
     <th><%= sort_link 'Intended MapSlot', :intended_map_episode_id, :intended_map_slot_id %></th>
     <th><%= sort_link 'Author', "map_authors.nick", "submissions.created_at" %></th>
-    <th><%= sort_link 'Last Link Update', "submissions.link_updated_at" %></th>
+    <!--<th><%#= sort_link 'Last Link Update', "submissions.link_updated_at" %></th>-->
     <th><%= sort_link 'Last Update', "submissions.updated_at" %></th>
     <th><%= sort_link 'Cmt', :comment_count %></th>
     <th><%= sort_link 'Img', :image_count %></th>
@@ -72,11 +72,11 @@
     <td><%= "E#{submission.map_episode.id}#{submission.map_slot.name}" %></td>
     <td><%= "E#{submission.intended_map_episode.id}#{submission.intended_map_slot.name}" %></td>
     <td><%= submission.map_author.nick %></td>
-    <td>
+    <!--<td>
       <div style="margin:0px; width:90px; text-align:center;">
-        <%= submission.link_updated_at.strftime("%d-%b-%Y\n(%H:%M)") %>
+        <%#= submission.link_updated_at.strftime("%d-%b-%Y\n(%H:%M)") %>
       </div>
-    </td>
+    </td>-->
     <td>
       <div style="margin:0px; width:90px; text-align:center;">
         <%= submission.updated_at.strftime("%d-%b-%Y\n(%H:%M)") %>

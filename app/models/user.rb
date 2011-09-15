@@ -41,6 +41,10 @@ class User < ActiveRecord::Base
   def can_vote_on_map?(sub_id)
     return !votes.find_by_submission_id(sub_id)
   end
+
+  def voted_positive?(sub_id)
+    return votes.find_by_submission_id(sub_id).points == 1
+  end
   
   def make_author
     unless self.map_author

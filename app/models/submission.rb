@@ -50,17 +50,30 @@ class Submission < ActiveRecord::Base
     end
   end
   
-  def self.ordered_search(column1, order, column2=nil, search_string=nil, episode=nil)
+  def self.ordered_search(column1, order, column2=nil, search_string=nil, episode=nil, user_id=nil, voted=nil)
     order_string = "#{column1} #{order}"
     order_string += ", #{column2} #{order}" if column2
     episode_cond = (episode ? "intended_map_episode_id = #{episode}" : "")
     search_string = "%" + search_string + "%" if search_string
     search_cond = ((search_string.nil? or search_string.blank?) ? "" : '(UPPER(name) LIKE UPPER(?) OR UPPER(map_authors.nick) LIKE UPPER(?))')
     conj = (episode_cond.present? and search_cond.present?) ? " AND " : ""
-    Submission.find(:all,
-      :include => :map_author,
-      :conditions => [episode_cond + conj + search_cond, search_string, search_string],
-      :order => order_string)
+    if voted
+      voted_ids = ""
+      if voted == "yes"
+        voted_ids = (User.find(user_id).votes.collect {|v| v.submission_id})
+      elsif voted == "no"
+        voted_ids = (Submission.all.collect {|s| s.id}) - (User.find(user_id).votes.collect {|v| v.submission_id})
+      end
+      Submission.find_all_by_id(voted_ids,
+        :include => :map_author,
+        :conditions => [episode_cond + conj + search_cond, search_string, search_string],
+        :order => order_string)
+    else
+      Submission.find(:all,
+        :include => :map_author,
+        :conditions => [episode_cond + conj + search_cond, search_string, search_string],
+        :order => order_string)
+    end
   end
   
   def aye_votes

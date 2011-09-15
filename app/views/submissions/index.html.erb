@@ -1,3 +1,12 @@
+<style type="text/css">
+  .submissions-filter-fieldset {
+    width: 650px;
+    margin-left: 10px;
+    margin-top: 5px;
+    margin-bottom: 2px;;
+  }
+</style>
+
 <h1>Listing submissions</h1>
 
 <div style="margin-top:10px; margin-bottom:30px;">
@@ -7,35 +16,68 @@
     <%= hidden_field "search", "c2", :value => params[:c2] %>
     <%= hidden_field "search", "d", :value => params[:d] %>
     <br />
-    <span>
-      <%= radio_button "search", "e", "",
-        {:checked => (params[:e].nil? ? "checked" : "") } %>
-      <b>All</b>
-    </span>
-    |
-    <span>
-      <%= radio_button "search", "e", "1",
-        {:checked => (params[:e]=="1" ? "checked" : "") } %>
-      <span class="kditd_row search_radio_box_span">Knee-Deep in the Dead</span>
-    </span>
-    |
-    <span>
-      <%= radio_button "search", "e", "2",
-        {:checked => (params[:e]=="2" ? "checked" : "") } %>
-      <span class="tsoh_row search_radio_box_span">The Shores of Hell</span>
-    </span>
-    |
-    <span>
-      <%= radio_button "search", "e", "3",
-        {:checked => (params[:e]=="3" ? "checked" : "") } %>
-      <span class="inferno_row search_radio_box_span">Inferno</span>
-    <span>
-    |
-    <span>
-      <%= radio_button "search", "e", "4",
-        {:checked => (params[:e]=="4" ? "checked" : "") } %>
-      <span class="tfc_row search_radio_box_span">Thy Flesh Consumed</span>
-    </span>
+
+    <!-- EPSIODE FILTER -->
+    <fieldset class="submissions-filter-fieldset">
+      <legend>episode filter</legend>
+      <span>
+        <%= radio_button "search", "e", "",
+          {:checked => (params[:e].nil? ? "checked" : "") } %>
+        <b>All</b>
+      </span>
+      |
+      <span>
+        <%= radio_button "search", "e", "1",
+          {:checked => (params[:e]=="1" ? "checked" : "") } %>
+        <span class="kditd_row search_radio_box_span">Knee-Deep in the Dead</span>
+      </span>
+      |
+      <span>
+        <%= radio_button "search", "e", "2",
+          {:checked => (params[:e]=="2" ? "checked" : "") } %>
+        <span class="tsoh_row search_radio_box_span">The Shores of Hell</span>
+      </span>
+      |
+      <span>
+        <%= radio_button "search", "e", "3",
+          {:checked => (params[:e]=="3" ? "checked" : "") } %>
+        <span class="inferno_row search_radio_box_span">Inferno</span>
+      <span>
+      |
+      <span>
+        <%= radio_button "search", "e", "4",
+          {:checked => (params[:e]=="4" ? "checked" : "") } %>
+        <span class="tfc_row search_radio_box_span">Thy Flesh Consumed</span>
+      </span>
+    </fieldset>
+    <!-- end of EPISODE FILTER -->
+
+    <!-- VOTED FILTER -->
+    <% if user_signed_in? %>
+      <fieldset class="submissions-filter-fieldset">
+        <legend>filter by votes</legend>
+        <%= hidden_field "search", "u", :value => current_user.id %>
+        <span>
+          <%= radio_button "search", "v", "",
+            {:checked => (params[:v].nil? ? "checked" : "") } %>
+          <b>All</b>
+        </span>
+        |
+        <span>
+          <%= radio_button "search", "v", "yes",
+            {:checked => (params[:v]=="yes" ? "checked" : "") } %>
+          <span>voted</span>
+        </span>
+        |
+        <span>
+          <%= radio_button "search", "v", "no",
+            {:checked => (params[:v]=="no" ? "checked" : "") } %>
+          <span>not voted</span>
+        </span>
+      </fieldset>
+    <% end %>
+    <!-- end of VOTED FILTER -->
+
     <%= button_to "search", "submit_search" %>
     
   <% end %>
@@ -95,7 +137,11 @@
     <% if user_signed_in? and current_user.team %>
       <td>
         <div style="text-align:center;">
-        <%= current_user.can_vote_on_map?(submission.id) ? image_tag('not_voted.png') : image_tag('voted.png') %>
+        <% if current_user.can_vote_on_map?(submission.id) %>
+          <%= image_tag('not_voted.png') %>
+        <% else %>
+          <%= current_user.voted_positive?(submission.id) ? image_tag('ayed.png') : image_tag('nayed.png') %>
+        <% end %>
         </div>
       </td>
       <td>

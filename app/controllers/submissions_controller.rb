@@ -8,9 +8,9 @@ class SubmissionsController < ApplicationController
   def index
     request.parameters.reject! {|p| p=="authenticity_token"}
     if params[:c1] and params[:d]
-      @submissions = Submission.ordered_search(params[:c1], params[:d], params[:c2], params[:s], params[:e])
+      @submissions = Submission.ordered_search(params[:c1], params[:d], params[:c2], params[:s], params[:e], params[:u], params[:v])
     else
-      @submissions = Submission.ordered_search("submissions.updated_at", "desc", nil, params[:s], params[:e])
+      @submissions = Submission.ordered_search("submissions.updated_at", "desc", nil, params[:s], params[:e], params[:u], params[:v])
     end
 
     respond_to do |format|

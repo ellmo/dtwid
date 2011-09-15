@@ -1,5 +1,5 @@
 <div class="removable_fields">
-  <%= f.input :link %>
+  <%= f.input :link, :as => :url %>
   <%= f.input :_destroy, :as => :hidden %>
   <%= link_to_remove_fields("Remove", f) %>
 </div>

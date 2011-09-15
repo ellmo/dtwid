@@ -34,10 +34,11 @@ class Ability
           vote.user == user
         end
       end
-    else
+    else #user is not registered
       can :read, Submission
       can :read, SubmissionComment
       can :read, SubmissionImageLink
+      can :search, Submission
     end
     #
     # The first argument to `can` is the action you are giving the user permission to do.

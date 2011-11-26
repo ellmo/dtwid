@@ -15,7 +15,10 @@ gem 'cancan', '1.6.5'
 gem 'devise', '1.4.2'
 gem 'simple_form', '1.4.2'
 gem 'tiny_mce', '0.1.4'
-#gem 'tabs_on_rails', '2.0.2'
+
+group :development do
+  gem 'pry'
+end
 
 group :development, :test do
   gem 'sqlite3-ruby', :require => 'sqlite3'

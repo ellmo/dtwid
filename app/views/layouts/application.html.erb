@@ -9,17 +9,25 @@
   <body>
   <div style="width:960px">
   <div id="header">
-    <% if user_signed_in? %>
-      [ signed in as
-      <%= content_tag :span, :style => "color: #78C878;" do %>
-        <%= current_user.nick %>
+    <span>
+      <% if user_signed_in? %>
+        [ signed in as
+        <%= content_tag :span, :style => "color: #78C878;" do %>
+          <%= current_user.nick %>
+        <% end %>
+        | <%= link_to "Sign out", destroy_user_session_path, :method => :delete %> ]
+      <% else %>
+        [ Not logged in. | 
+        <%= link_to "Sign in", new_user_session_path %> |
+        <%= link_to "Sign up", new_user_registration_path %> ]
       <% end %>
-      | <%= link_to "Sign out", destroy_user_session_path, :method => :delete %> ]
-    <% else %>
-      [ Not logged in. | 
-      <%= link_to "Sign in", new_user_session_path %> |
-      <%= link_to "Sign up", new_user_registration_path %> ]
-    <% end %>
+    </span>
+    <span style="right: 20px; position: absolute; top: -12px;">
+      <div>
+        <div><b>current release:</b> <%= link_to "public beta", "http://www.sendspace.com/file/14yity" %></div>
+        <div><b>final release:</b> December 10th 2011</div>
+      </div>
+    </span>
   </div>
 
   <div id="main">

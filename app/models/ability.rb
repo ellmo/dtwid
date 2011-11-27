@@ -12,6 +12,7 @@ class Ability
       can :manage, SubmissionImageLink
       can :manage, News
       can :manage, GalleryImage
+      can :manage, SubmissionComment
     elsif user.registered?
       can :read, :all
       can :update, User do |u|
@@ -19,13 +20,14 @@ class Ability
       end
       can :search, Submission
       can :create, Submission
+      can :create, SubmissionComment
       can [:update, :destroy], Submission do |sub|
         sub.map_author.user == user
       end
       can [:create, :update, :destroy], SubmissionImageLink do |sublink|
         sublink.submission.map_author.user == user
       end
-      can [:create, :update, :destroy], SubmissionComment do |subcomment|
+      can [:update, :destroy], SubmissionComment do |subcomment|
         subcomment.user == user
       end
       if user.team

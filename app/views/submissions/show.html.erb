@@ -169,7 +169,7 @@
       <% end %>
     </div>
     
-    <% if user_signed_in? %>
+    <% if user_signed_in? and @comment %>
       <div id="comment_form">
         <%= simple_form_for @comment do |f| %>
           <%= f.input :submission_id, :as => :hidden %>
@@ -179,7 +179,7 @@
       </div>
     <% end %>
     
-    <% if @submission.comments.size > 1 %>
+    <% if @submission.comments.size > 0 %>
       <div id="comments">
       <br/>
         <span id="comments_span">Comments:</span>

@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
   end
   
   def registered?
-    self.id
+    !!self.id
   end  
   
   def admin?

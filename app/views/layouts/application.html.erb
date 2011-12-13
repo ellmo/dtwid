@@ -34,11 +34,11 @@
       <%= image_tag "doom_small.png" %>
       <br/>
       <ul>
-        <li><%= link_to "News", root_path %></li>
+        <li><%= link_to "Home", root_path %></li>
+        <li><%= link_to "News", news_path %></li>
         <li><%= link_to "About", about_path %></li>
         <li><%= link_to "Contact", contact_path %></li>
         <li><%= link_to "View maps", submissions_path %></li>
-        <li><%= link_to "Gallery", gallery_path %></li>
       </ul>
       <% if user_signed_in? and current_user.admin? %>
         <div style="margin-left:30px; font-weight:bold">Admin stuff:</div>

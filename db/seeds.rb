@@ -15,17 +15,9 @@ PrivacyLevel.create(:name => 'users only', :level => 1)
 PrivacyLevel.create(:name => 'team only', :level => 2)
 PrivacyLevel.create(:name => 'private', :level => 3)
 
-MapEpisode.create(:name => 'Knee-Deep in the Dead')
-MapEpisode.create(:name => 'The Shores of Hell')
-MapEpisode.create(:name => 'Inferno')
+MapEpisode.create(:name => 'Hell on Earth')
 
-MapSlot.create(:name => 'M1')
-MapSlot.create(:name => 'M2')
-MapSlot.create(:name => 'M3')
-MapSlot.create(:name => 'M4')
-MapSlot.create(:name => 'M5')
-MapSlot.create(:name => 'M6')
-MapSlot.create(:name => 'M7')
-MapSlot.create(:name => 'M8')
-MapSlot.create(:name => 'M9')
-MapSlot.create(:name => 'M2-M7', :playable => false)
+32.times do |x|
+	MapSlot.create(:name => "MAP%02d" % (x+1))
+end
+

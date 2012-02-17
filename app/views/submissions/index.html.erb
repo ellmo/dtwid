@@ -17,41 +17,6 @@
     <%= hidden_field "search", "d", :value => params[:d] %>
     <br />
 
-    <!-- EPSIODE FILTER -->
-    <fieldset class="submissions-filter-fieldset">
-      <legend>episode filter</legend>
-      <span>
-        <%= radio_button "search", "e", "",
-          {:checked => (params[:e].nil? ? "checked" : "") } %>
-        <b>All</b>
-      </span>
-      |
-      <span>
-        <%= radio_button "search", "e", "1",
-          {:checked => (params[:e]=="1" ? "checked" : "") } %>
-        <span class="kditd_row search_radio_box_span">Knee-Deep in the Dead</span>
-      </span>
-      |
-      <span>
-        <%= radio_button "search", "e", "2",
-          {:checked => (params[:e]=="2" ? "checked" : "") } %>
-        <span class="tsoh_row search_radio_box_span">The Shores of Hell</span>
-      </span>
-      |
-      <span>
-        <%= radio_button "search", "e", "3",
-          {:checked => (params[:e]=="3" ? "checked" : "") } %>
-        <span class="inferno_row search_radio_box_span">Inferno</span>
-      <span>
-      |
-      <span>
-        <%= radio_button "search", "e", "4",
-          {:checked => (params[:e]=="4" ? "checked" : "") } %>
-        <span class="tfc_row search_radio_box_span">Thy Flesh Consumed</span>
-      </span>
-    </fieldset>
-    <!-- end of EPISODE FILTER -->
-
     <!-- VOTED FILTER -->
     <% if user_signed_in? %>
       <fieldset class="submissions-filter-fieldset">
@@ -111,8 +76,8 @@
       :class => (((index%2 == 1) ? 'odd_row ' : 'even_row ') + submission.get_css_row_style ) do %>
     <td><%= index+1 %></td>
     <td><%= link_to submission.name, submission, {:class => submission.get_css_row_style } %></td>
-    <td><%= "E#{submission.map_episode.id}#{submission.map_slot.name}" %></td>
-    <td><%= "E#{submission.intended_map_episode.id}#{submission.intended_map_slot.name}" %></td>
+    <td><%= submission.map_slot.name %></td>
+    <td><%= submission.intended_map_slot.name %></td>
     <td><%= submission.map_author.nick %></td>
     <!--<td>
       <div style="margin:0px; width:90px; text-align:center;">

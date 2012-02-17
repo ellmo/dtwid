@@ -21,10 +21,10 @@ Dtwid::Application.routes.draw do
   match 'news' => "frontend#index"
   match 'about' => "frontend#about"
   match 'contact' => "frontend#contact"
-  match 'release' => "frontend#release"
+  #match 'release' => "frontend#release"
 
   devise_for :users
   
-  root :to => "frontend#release"
+  root :to => "frontend#index"
   
 end

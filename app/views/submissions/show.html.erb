@@ -75,7 +75,7 @@
 
 <div class="frontend_wide_div">
   <span class="frontend_title">
-    <%= "E#{@submission.intended_map_episode.id}#{@submission.intended_map_slot.name} - #{@submission.name}" %>
+    <%= "#{@submission.intended_map_slot.name} - #{@submission.name}" %>
   </span>
   <span style="font-weight:bold; float:right; margin-right:20px;">
     <%= link_to('Edit', edit_submission_path(@submission)) if (current_user and (current_user == @submission.map_author.user or current_user.admin?)) %>
@@ -98,7 +98,7 @@
         <b>Download Link:</b> <%= link_to @submission.link, @submission.link %>
         <br />
       <% end %>
-      <b>Playable on:</b> <%= "E#{@submission.map_episode.id}#{@submission.map_slot.name} " %>
+      <b>Playable on:</b> <%= @submission.map_slot.name %>
       <br/>    
       
       <% if user_signed_in? and can?(:create, Vote) %>

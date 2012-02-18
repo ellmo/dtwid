@@ -1,12 +1,12 @@
 td { padding: 4px; }
 
-th { background-color: #282828; }
+th { background-color: #53573b; }
 
-.odd_row { background-color: #282828; }
-.even_row { background-color: #101010; }
+.odd_row { background-color: #2E2E1F; }
+.even_row { background-color: #1b170c; }
 
-.kditd_row { color: #7882C8; }
-.kditd_row a { color: #7882C8; }
+.kditd_row { color: #cdb68b; }
+.kditd_row a { color: #cdb68b; }
 
 .tsoh_row { color: #bfa97e; }
 .tsoh_row a { color: #bfa97e; }

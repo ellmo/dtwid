@@ -1,5 +1,5 @@
 body {
-  background-color: #000;
+  background-color: #2b230f;
   color: gainsboro;
   padding:0px;
 }
@@ -17,8 +17,8 @@ pre {
   font-size: 11px;
 }
 
-a { color: #a48dab; }
-a:visited { color: #a48dab; }
+a { color: #cdb68b; }
+a:visited { color: #cdb68b; }
 a:hover { color: #fff }
 
 div.field, div.actions {

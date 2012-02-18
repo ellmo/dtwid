@@ -5,12 +5,12 @@
 #header {
   position: relative;
   width: 100%;
-  background-color: #282828;
+  background-color: #53573b;
   margin: 0px;
-  border-top: 10px #282828 solid;
+  border-top: 10px #53573b solid;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  border-bottom: 5px #282828 solid;
+  border-bottom: 5px #53573b solid;
   border-bottom-right-radius: 10px;
 }
 
@@ -25,32 +25,32 @@
 #left-menu {
   position: absolute;
   left: 0px;
-  background-color: #282828;
+  background-color: #53573b;
   width: 320px;
-  border-right: 10px #282828 solid;
-  border-top: 20px #282828 solid;
-  border-bottom: 10px #282828 solid;
+  border-right: 10px #53573b solid;
+  border-top: 20px #53573b solid;
+  border-bottom: 10px #53573b solid;
   border-bottom-left-radius: 10px;
 }
 
 #content-border {
   position: relative;
   left: 330px;
-  border-top: 10px black solid;
+  border-top: 10px #2b230f solid; 
   height: 100%;
 }
 
 #content {
-  border-top: 10px black solid;
-  border-left: 10px black solid;
+  border-top: 10px #2b230f solid;
+  border-left: 10px #2b230f solid;
   border-top-left-radius: 10px;
   margin: -10px;
   min-height: 800px;
 }
 
 .frontend_narrow_div {
-  background-color: #282828;
-  border: 10px #282828 solid;
+  background-color: #53573b;
+  border: 10px #53573b solid;
   border-radius: 10px;
   margin-right:40px;
   width: 610px;
@@ -58,8 +58,8 @@
 }
 
 .frontend_wide_div {
-  background-color: #282828;
-  border: 10px #282828 solid;
+  background-color: #53573b;
+  border: 10px #53573b solid;
   border-radius: 10px;
   margin-right:40px;
   min-width: 662px;
@@ -68,7 +68,8 @@
 
 .frontend_title {
   font-size:16px;
-  color:#7882C8;
+  color:#2b230f;
+  font-weight: bold;
 }
 
 .frontend_author {
@@ -77,8 +78,8 @@
 }
 
 .frontend_content {
-  background-color: black;
-  border: 8px black solid;
+  background-color: #2b230f;
+  border: 8px #2b230f solid;
   border-radius: 8px;
 }
 

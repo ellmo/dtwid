@@ -6,8 +6,8 @@
 
 <style type="text/css">
   #submission_description {
-    border-top: 5px solid #282828;
-    border-bottom: 5px solid #282828;
+    border-top: 5px solid #53573b;
+    border-bottom: 5px solid #53573b;
     margin-left: -8px;
     margin-right: -8px;
     margin-top: 10px;
@@ -17,26 +17,26 @@
   
   #description_span {
     font-weight: bold;
-    background-color: #282828;
-    border: 4px #282828 solid;
+    background-color: #53573b;
+    border: 4px #53573b solid;
     margin-left: -10px;
     padding: 2px;
     border-bottom-right-radius: 5px;
-    color: #7882C8;
+    color: #78C878;
   }
   
   #comments_span {
     margin-top: 10px;
-    background-color: #282828;
+    background-color: #53573b;
     padding: 4px;
     margin-left: -8px;
     font-weight: bold;
-    border: 2px #282828 solid;
+    border: 2px #53573b solid;
     border-top-right-radius: 8px;  
   }
 
   .submission_comment{
-    border-top: 5px solid #282828;
+    border-top: 5px solid #53573b;
     margin-left: -8px;
     margin-right: -8px;
     margin-bottom: 20px;
@@ -46,9 +46,9 @@
 
   .submission_comment_author {
     margin-left: 16px;
-    background-color: #282828;
+    background-color: #53573b;
     margin-top: -20px;
-    border: 5px solid #282828;
+    border: 5px solid #53573b;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
   }
@@ -57,16 +57,16 @@
     margin-top: -8px;
     margin-bottom: 10px;
     margin-left:20px;
-    background-color: #282828;
+    background-color: #53573b;
     width: 320px;
-    border: 5px solid #282828;
+    border: 5px solid #53573b;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
     text-align: center;
   }
 
   textarea {
-    background-color: #101010;
+    background-color: #1b170c;
     color: gainsboro;
     border: 2px dashed #606060;
     font-family: verdana;
@@ -191,10 +191,10 @@
               </div>
             <% end %>
             <span class="submission_comment_author">
-              <span style="color:#7882C8">
+              <span class="frontend_green">
                 <%= comment.user.nick %>
               </span> wrote on
-              <span style="color:#7882C8">
+              <span class="frontend_green">
                 <%= comment.created_at.strftime("%d-%b-%Y\n(%H:%M)") %>
               </span>
             </span>

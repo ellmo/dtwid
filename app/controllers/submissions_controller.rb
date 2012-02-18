@@ -29,6 +29,7 @@ class SubmissionsController < ApplicationController
   # GET /submissions/1.xml
   def show
     @submission = Submission.find(params[:id])
+    @comments = SubmissionComment.where(:submission_id => @submission.id)
     if user_signed_in? and can?( :create, SubmissionComment )
       @comment = @submission.comments.build
     end

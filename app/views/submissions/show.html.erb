@@ -87,7 +87,7 @@
     <div id="display_options">
       Toggle:
       <%= link_to_function 'Images', "$('#image_gallery').toggle();" %>
-      <%= link_to_function 'Descritpion', "$('#submission_description').toggle();" %>
+      <%= link_to_function 'Description', "$('#submission_description').toggle();" %>
       <%= link_to_function 'Date Info', "$('#date_info').toggle();" %>
       <% if user_signed_in? and can?(:create, Vote) %>
         <%= link_to_function 'Voting', "$('#voting').toggle();" %>
@@ -179,9 +179,8 @@
       </div>
     <% end %>
     
-    <% if @submission.comments.size > 0 %>
+    <% if @comments.present? %>
       <div id="comments">
-      <br/>
         <span id="comments_span">Comments:</span>
         <% @submission.comments.all(:order => "created_at DESC").each do |comment| %>
           <div class="submission_comment">

@@ -9,10 +9,10 @@
   <body>
   <div style="width:960px">
   <div id="header">
-    <span>
+    <span style="margin-left:10px;">
       <% if user_signed_in? %>
         [ signed in as
-        <%= content_tag :span, :style => "color: #78C878;" do %>
+        <%= content_tag :span, :style => "color: #cdb68b;" do %>
           <%= current_user.nick %>
         <% end %>
         | <%= link_to "Sign out", destroy_user_session_path, :method => :delete %> ]

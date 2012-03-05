@@ -36,13 +36,13 @@
 #content-border {
   position: relative;
   left: 330px;
-  border-top: 10px #2b230f solid; 
+  border-top: 10px #1C1C1C solid; 
   height: 100%;
 }
 
 #content {
-  border-top: 10px #2b230f solid;
-  border-left: 10px #2b230f solid;
+  border-top: 10px #1C1C1C solid;
+  border-left: 10px #1C1C1C solid;
   border-top-left-radius: 10px;
   margin: -10px;
   min-height: 800px;
@@ -68,7 +68,7 @@
 
 .frontend_title {
   font-size:16px;
-  color:#2b230f;
+  color:#1C1C1C;
   font-weight: bold;
 }
 
@@ -78,8 +78,8 @@
 }
 
 .frontend_content {
-  background-color: #2b230f;
-  border: 8px #2b230f solid;
+  background-color: #1C1C1C;
+  border: 8px #1C1C1C solid;
   border-radius: 8px;
 }
 
